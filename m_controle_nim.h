@@ -68,7 +68,6 @@ static int nb_jetons_pris = -1;
  /* 1 - si aucune partie n'est en cours
    declencher l'initialisation d'une nouvelle partie
    le module de controle déclenche les fonctions nécessaires
-   
    puis en fait part aux deux modules joueur et grundy 
    la partie n'est pas jouée, elle est mise en place
    la variable partie_en_cours est mise à 1
