@@ -1,6 +1,6 @@
 /*==========================================================*/
 /*  aut2023 tp1
-	implémentation du module types et constantes du logiciel
+	implÃ©mentation du module types et constantes du logiciel
 
 	Equipe :
 
@@ -11,7 +11,7 @@
 #include "m_types_const_nim.h"
 /*==========================================================*/
 
-/* VOUS AVEZ 10 FONCTIONS PUBLIQUES À DÉFINIR ET À TESTER */
+/* VOUS AVEZ 10 FONCTIONS PUBLIQUES Ã€ DÃ‰FINIR ET Ã€ TESTER */
 /* VASTE PROGRAMME   */
 
 
@@ -88,6 +88,25 @@ int tester_fin_jeu(const t_tablo_jeu jeu) {
 	return 1;
 }
 /*==========================================================*/
+int modifier_jeu(t_tablo_jeu jeu, int ligne, int nb_jetons) {
+	if (jeu[ligne] < jeu[nb_jetons]) {
+		return 0;
+	}
+	return 1;
+}
+/*==========================================================*/
+int parties_egales(const t_partie_infos* partie0, const t_partie_infos* partie1) {
+	int ret;
+	ret = strcomp(partie0, partie1)
+		if (ret) {
+			return 0;
+		}
+	return 1;
+}
+/*==========================================================*/
+void copier_partie(const t_partie_infos* src, t_partie_infos* dest) {
+	strcpy(dest, src);
+}
 
 
 
