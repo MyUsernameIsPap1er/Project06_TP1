@@ -2,7 +2,7 @@
 /*  aut2023 tp1
 	interface du module types et constantes du logiciel
 
-	Equipe : Simon, Zied
+	Equipe : Simon, Zied, Max
 
 */
 /*==========================================================*/

@@ -75,13 +75,7 @@ static int nb_jetons_pris = -1;
    retour de 1 en cas de succes et de 0 sinon (peu importe l'erreur)
   */
 int init_nouvelle_partie(void);
-/*==========================================================*/
-int init_nouvelle_partie(void) {
-	if (partie_en_cours == 0) {
-		partie_en_cours = 1;
-		
-	}
-}
+
 /*==========================================================*/
 /* 2- declencher la partie préalablement initialisée
    
@@ -98,6 +92,7 @@ int init_nouvelle_partie(void) {
    retour ERREUR
 */
 int jouer_la_partie(void);
+
 /*==========================================================*/
 /*
 	les quatre fonctions dédiées aux controles et aux variations des variables 
