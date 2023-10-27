@@ -88,11 +88,33 @@ int tester_fin_jeu(const t_tablo_jeu jeu) {
 	return 1;
 }
 /*==========================================================*/
-
-
-
+int modifier_jeu(t_tablo_jeu jeu, int ligne, int nb_jetons) {
+	
+	if (nb_jetons <= jeu[ligne])
+	{
+		jeu[ligne] -= nb_jetons;
+		return 1;
+	}
+	return 0;
+}
 /*==========================================================*/
+int parties_egales(const t_partie_infos* partie0, const t_partie_infos* partie1) {
+
+	if (partie0->jetons_actuel == partie1->jetons_actuel &&
+		partie0->jetons_original == partie1->jetons_original && 
+		!(strcmp(partie0->id_partie, partie1->id_partie))) {
+		
+		return 1;
+	}
+	return 0;
+}
 /*==========================================================*/
+void copier_partie(const t_partie_infos* src, t_partie_infos* dest) {
+
+	*dest->jetons_actuel = *src->jetons_actuel;
+	*dest->jetons_original = *src->jetons_original;
+	strcpy(dest, src);
+}
 /*==========================================================*/
 /*==========================================================*/
 /*==========================================================*/
