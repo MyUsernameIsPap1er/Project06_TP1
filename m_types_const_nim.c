@@ -8,7 +8,7 @@
 /*==========================================================*/
 /*==========================================================*/
 
-#include ""
+#include "m_types_const_nim.h"
 /*==========================================================*/
 
 /* VOUS AVEZ 10 FONCTIONS PUBLIQUES À DÉFINIR ET À TESTER */
@@ -88,7 +88,17 @@ int tester_fin_jeu(const t_tablo_jeu jeu) {
 	return 1;
 }
 /*==========================================================*/
+int modifier_jeu(t_tablo_jeu jeu, int ligne, int nb_jetons) {
 
+	if (nb_jetons <= jeu[ligne])
+	{
+		jeu[ligne] -= nb_jetons;
+		return 1;
+	}
+	return 0;
+}
+/*==========================================================*/
+int parties_egales(const t_partie_infos* partie0, const t_partie_infos* partie1) {
 
 	if (partie0->jetons_actuel == partie1->jetons_actuel &&
 		partie0->jetons_original == partie1->jetons_original && 
