@@ -2,7 +2,7 @@
 /*  aut2023 tp1
 	interface du module grundy nim
 
-	Equipe : Zied, Maxime & Simon
+	Equipe : Zied, Maxime, Simon & Nicholas
 
 */
 /*==========================================================*/

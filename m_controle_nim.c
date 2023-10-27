@@ -1,8 +1,8 @@
 /*==========================================================*/
 /*  aut2023 tp1
-	implémentation du module types et constantes du logiciel
+	implÃ©mentation du module types et constantes du logiciel
 
-	Equipe : Max, Simon, Zieb
+	Equipe : Max, Simon, Zied, Nicholas
 
 */
 /*==========================================================*/
