@@ -20,98 +20,106 @@
 /*==========================================================*/
 void init_jeu_alea(t_tablo_jeu dest) {
 
-	for (size_t i = 0; i < NB_LIGNES_NIM; ++i)
+	for (size_t i = 0; i < NB_LIGNES_NIM; ++i) //Traverse le tableau
 	{
-		dest[i] = mt_randi(NB_JETONS_MAX);
+		dest[i] = mt_randi(NB_JETONS_MAX); // Remplie chaque case avec un nombre aléatoire
 	}
 }
 
 /*==========================================================*/
 int tester_jeu_conforme(const t_tablo_jeu jeu) {
-	int i;
-	for (i = 0; i < NB_LIGNES_NIM; i += 1) {
-		if (jeu[i] < 0) {
-			return 0;
+	
+	for (int i = 0; i < NB_LIGNES_NIM; i += 1) {
+		
+		if (jeu[i] < 0) { // regarde si chaque valeur vaut plus que 0
+			
+			return 0; // retourne 0 si non
 		}
 	}
-	return 1;
+	
+	return 1; // retourne 1 si oui
 }
 
 /*==========================================================*/
 void copier_jeu(const t_tablo_jeu src, t_tablo_jeu dest) {
 
-	for (size_t i = 0; i < NB_LIGNES_NIM; ++i)
+	for (size_t i = 0; i < NB_LIGNES_NIM; ++i) //Traverse le tableau
 	{
-		dest[i] = src[i];
+		dest[i] = src[i]; //copie chaque valeur de src dans dest
 	}
 }
 
 /*==========================================================*/
 int tester_jeux_egaux(const t_tablo_jeu jeu0, const t_tablo_jeu jeu1) {
-	int i;
-	for (i = 0;i < NB_LIGNES_NIM;i += 1) {
-		if (jeu0[i] != jeu1[i]) {
-			return 0;
+
+	for (int i = 0;i < NB_LIGNES_NIM;i += 1) { //Traverse le tableau
+		
+		if (jeu0[i] != jeu1[i]) { //Regarde si les valeurs entre jeu0 et jeu1 sont les mêmes
+			
+			return 0; //Retourne 0 si non
 		}
 	}
-	return 1;
+	
+	return 1; //Retourne 1 si oui
 }
 
 
 /*==========================================================*/
 int tester_ordre_jeux(const t_tablo_jeu original, const t_tablo_jeu actuel) {
 
-	if (tester_jeu_conforme(original) || tester_jeu_conforme(actuel))
+	if (tester_jeu_conforme(original) || tester_jeu_conforme(actuel)) //Teste si chacun des jeux sont conformes
 	{
-		return 0;
+		return 0; //Retourne 0 si ils ne le sont pas
 	}
 
-	for (size_t i = 0; i < NB_LIGNES_NIM; ++i)
+	for (size_t i = 0; i < NB_LIGNES_NIM; ++i) //Traverse les tableaux
 	{
-		if (actuel[i] > original[i])
+		if (actuel[i] > original[i]) //Regarde si chaques valeurs du jeu actuel sont plus grandes que celles du jeu originale
 		{
-			return 0;
+			return 0; //Retourne 0 dès qu'une des valeurs est plus grande
 		}
 	}
-	return 1;
+	return 1; //Retourne 1 si elles sont toutes plus petites
 }
 /*==========================================================*/
 int tester_fin_jeu(const t_tablo_jeu jeu) {
 
-	for (size_t i = 0; i < NB_LIGNES_NIM ; i++)
+	for (size_t i = 0; i < NB_LIGNES_NIM ; i++) //Traverse le tableau
 	{
-		if (jeu[i] != 0)
+		if (jeu[i] != 0) //Regarde si toutes les valeurs du jeu sont 0 (fin du jeu)
 		{
-			return 0;
+			return 0; //Retourne 0 si l'une d'elle ne l'est pas
 		}
 	}
-	return 1;
+	return 1; //Retourne 1 si tous est 0
 }
 /*==========================================================*/
 int modifier_jeu(t_tablo_jeu jeu, int ligne, int nb_jetons) {
 
-	if (nb_jetons <= jeu[ligne])
+	if (nb_jetons <= jeu[ligne]) //S'assure que le nombre de jetons à retirer est plus petit que le nombre de jeton disponible
 	{
-		jeu[ligne] -= nb_jetons;
-		return 1;
+		jeu[ligne] -= nb_jetons; //Soustrais les jetons
+		return 1; //Retourne 1 si la soustraction est survenu
 	}
-	return 0;
+	return 0; //Retourne 0 si la soustraction n'est pas possible
 }
 /*==========================================================*/
 int parties_egales(const t_partie_infos* partie0, const t_partie_infos* partie1) {
 
 	if (partie0->jetons_actuel == partie1->jetons_actuel &&
 		partie0->jetons_original == partie1->jetons_original && 
-		!(strcmp(partie0->id_partie, partie1->id_partie))) {
+		!(strcmp(partie0->id_partie, partie1->id_partie))) { //S'assure que toute les variables de chaque tableau sont les mêmes.
 		
-		return 1;
+		return 1; //Retourne 1 si elles le sont
 	}
-	return 0;
+	return 0; //Retourne 0 si elles ne le sont pas
 }
 /*==========================================================*/
 void copier_partie(const t_partie_infos* src, t_partie_infos* dest) {
 
-	*dest->jetons_actuel = *src->jetons_actuel;
+	//Copie des valeurs de src dans dest
+
+	*dest->jetons_actuel = *src->jetons_actuel; 
 	*dest->jetons_original = *src->jetons_original;
 	strcpy(dest, src);
 }
