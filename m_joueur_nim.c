@@ -1,4 +1,5 @@
 #include "m_joueur_nim.h"
+
 int get_partie_joueur_en_cours(void) {
 
 }
