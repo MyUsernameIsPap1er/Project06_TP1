@@ -22,3 +22,20 @@ int jouer_la_partie(void) {
 
 
 }
+
+int valider_coup_joueur(t_partie_infos* partie_joueur, int ligne, int nb_pièce) {
+
+}
+
+int valider_coup_grundy(t_partie_infos* partie_grundy, int ligne, int nb_pièce) {
+
+}
+
+int updater_jeu_joueur(t_partie_infos* partie_joueur) {
+
+}
+
+int updater_jeu_grundy(t_partie_infos* partie_grundy) {
+
+}
+
