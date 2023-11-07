@@ -17,3 +17,8 @@ int init_nouvelle_partie(void) {
 		partie_en_cours = 1;		
 	}
 }
+
+int jouer_la_partie(void) {
+
+
+}
