@@ -25,6 +25,7 @@
 
 		les deux entiers suivants sont essentiels à la validation de l'update
 		de la  partie d'un joueur APRÈS un coup de l'autre joueur
+
 		5- int ligne_modif garde la ligne du jeu modifiée lors du dernier coup
 		6- int nb_jetons_pris  garde le nombre de jetons retirés lors du dernier coup
 
