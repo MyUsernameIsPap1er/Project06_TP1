@@ -1,7 +1,10 @@
 #include "m_joueur_nim.h"
 
-int get_partie_joueur_en_cours(void) {
-
+int get_partie_joueur_en_cours(void) { 
+	if (partie_joueur_en_cours) { //si partie_joueur_en_cours == 1 retourne 1
+		return 1;
+	}
+	return 0; //sinon retourne 0;
 }
 
 int init_partie_joueur(const t_partie_infos* partie) { //recoie info de la partie initialise
@@ -16,6 +19,8 @@ int init_partie_joueur(const t_partie_infos* partie) { //recoie info de la parti
 }
 
 int declencher_coup_joueur(const t_partieID) {
+
+
 
 }
 
