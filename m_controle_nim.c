@@ -12,14 +12,22 @@
 /*==========================================================*/
 
 int init_nouvelle_partie(void) {
+	
 	if (partie_en_cours == 0) {
 		
 		partie_en_cours = 1;		
 	}
+	else {
+		return 0
+	}
+
+	get_ID_unique(&partie.id_partie);
 
 	init_jeu_alea(partie.jetons_original);
+	copier_jeu(partie.jetons_original, partie.jetons_actuel);
 
-	
+
+	return 1
 }
 
 int jouer_la_partie(void) {
