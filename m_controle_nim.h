@@ -2,7 +2,7 @@
 /*  aut2023 tp1
 	interface du module de controle d'une partie de nim
 	
-	Equipe : 
+	Equipe : Nicolas Zied Simon Maxime
 
 */
 

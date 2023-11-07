@@ -18,3 +18,8 @@ int init_nouvelle_partie(void) {
 	}
 
 }
+
+int jouer_la_partie(void) {
+
+
+}
