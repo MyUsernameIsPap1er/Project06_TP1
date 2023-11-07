@@ -74,7 +74,6 @@ static matice_grundy noyau_grundy = { 0 };
 /*==========================================================*/
 
 // retourne 1 si grundy a une partie en cours et 0 sinon
-
 int get_partie_grundy_en_cours(void);
 /*==========================================================*/
 
@@ -84,7 +83,6 @@ int get_partie_grundy_en_cours(void);
 	 sinon copier la partie recue dans partie_grundy
 	 grundy a une partie en cours, retour de 1
 */
-
 int init_partie_grundy(const t_partie_infos* partie);
 
 /*==========================================================*/
@@ -95,7 +93,6 @@ int init_partie_grundy(const t_partie_infos* partie);
 
 	sinon l'algorithme de grundy est déclenché
 */
-
 int declencher_coup_grundy(const t_partieID);
 
 /*==========================================================*/
@@ -106,7 +103,6 @@ int declencher_coup_grundy(const t_partieID);
    ne pas réaliser cet ordre du module de controle amenera ce module de controle
    à lever une exception et à potentiellement arrêter le programme
 */
-
 void terminer_partie_grundy(const t_partieID);
 
 /*==========================================================*/
