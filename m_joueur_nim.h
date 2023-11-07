@@ -89,7 +89,7 @@ int init_partie_joueur(const t_partie_infos* partie);
 	sinon l'algorithme important documenté plus haut est déclenché
 */
 
-int declencher_coup_joueur(const t_partieID);
+int declencher_coup_joueur(const t_partieID sonID);
 
  /*==========================================================*/
  /*
@@ -100,7 +100,7 @@ int declencher_coup_joueur(const t_partieID);
 	à lever une exception et à potentiellement arrêter le programme
 */
 
-void terminer_partie_joueur(const t_partieID);
+void terminer_partie_joueur(const t_partieID sonID);
 
 /*==========================================================*/
 #endif	
