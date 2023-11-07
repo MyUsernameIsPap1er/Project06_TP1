@@ -211,6 +211,7 @@ int tester_fin_jeu(const t_tablo_jeu jeu);
 */
 int modifier_jeu(t_tablo_jeu jeu, int ligne, int nb_jetons);
 /*==========================================================*/
+
 /*==========================================================*/
 
 /*==========================================================*/
@@ -226,10 +227,14 @@ int modifier_jeu(t_tablo_jeu jeu, int ligne, int nb_jetons);
 int parties_egales(const t_partie_infos* partie0, const t_partie_infos* partie1);
 
 /*==========================================================*/
+
+/*==========================================================*/
 /* copier les trois membres de la partie source dans la partie destination
 	 utilisez la fonction strcpy de string.h pour copier ID
 */ 
 void copier_partie(const t_partie_infos* src, t_partie_infos* dest);
+/*==========================================================*/
+
 /*==========================================================*/
 
 /*
@@ -239,6 +244,8 @@ elle sera uniquement utilisée dans nouvelle_partie du module de controle
 */
 void get_ID_unique(t_partieID id_partie);
 
+
+/*==========================================================*/
 
 /*==========================================================*/
 #endif	
