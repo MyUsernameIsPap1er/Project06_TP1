@@ -125,7 +125,8 @@ int updater_jeu_grundy(t_partie_infos* partie_grundy);
  void set_nouvelle_partie();
 /*==========================================================*/
 
-/* */
+/*
+*/
 int tester_partie_conforme(const t_partie_infos* partie);
 
 
