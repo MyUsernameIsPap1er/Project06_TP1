@@ -16,10 +16,14 @@ int init_nouvelle_partie(void) {
 		
 		partie_en_cours = 1;		
 	}
-	init_jeu_alea(p)
+
+	init_jeu_alea(partie.jetons_original);
+
+	
 }
 
 int jouer_la_partie(void) {
 
 
 }
+
