@@ -13,7 +13,7 @@
 
 int init_nouvelle_partie(void) {
 	if (partie_en_cours == 0) {
-		partie_en_cours = 1;
 		
+		partie_en_cours = 1;		
 	}
 }

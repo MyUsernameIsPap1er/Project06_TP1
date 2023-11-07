@@ -243,8 +243,6 @@ cette fonction vous est donnée, vous ne devez pas la modifier
 elle sera uniquement utilisée dans nouvelle_partie du module de controle
 */
 void get_ID_unique(t_partieID id_partie);
-
-
 /*==========================================================*/
 
 /*==========================================================*/
