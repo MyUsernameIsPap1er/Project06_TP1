@@ -16,6 +16,7 @@ int init_nouvelle_partie(void) {
 		
 		partie_en_cours = 1;		
 	}
+	init_jeu_alea(p)
 }
 
 int jouer_la_partie(void) {
