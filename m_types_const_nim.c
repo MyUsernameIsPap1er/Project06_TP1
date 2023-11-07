@@ -22,7 +22,7 @@ void init_jeu_alea(t_tablo_jeu dest) {
 
 	for (size_t i = 0; i < NB_LIGNES_NIM; ++i) //Traverse le tableau
 	{
-		dest[i] = mt_randi(NB_JETONS_MAX); // Remplie chaque case avec un nombre aléatoire
+		dest[i] = (int)mt_randf(NB_JETONS_MIN, NB_JETONS_MAX); // Remplie chaque case avec un nombre aléatoire
 	}
 }
 
