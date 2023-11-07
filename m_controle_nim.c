@@ -26,4 +26,3 @@ int jouer_la_partie(void) {
 
 
 }
-
