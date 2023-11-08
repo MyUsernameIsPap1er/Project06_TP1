@@ -23,7 +23,10 @@ int init_partie_joueur(const t_partie_infos* partie) { //recoie info de la parti
 
 int declencher_coup_joueur(const t_partieID sonID) {
 
+	if (partie_joueur_en_cours || tester_partie_conforme(t_partieID)) {               //Si il y a une partie en cours, retourne 0 ou que le ID ne correspond pas
 
+		return 0;
+	}
 
 }
 

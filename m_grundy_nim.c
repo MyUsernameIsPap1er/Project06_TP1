@@ -27,7 +27,7 @@ int init_partie_grundy(const t_partie_infos* partie) {
 /*==========================================================*//*==========================================================*/
 int declencher_coup_grundy(const t_partieID) {
 	
-	if (partie_grundy_en_cours || tester_partie_conforme(t_partieID) //Si il y a une partie en cours, retourne 0 ou que le ID ne correspond pas
+	if (partie_grundy_en_cours || tester_partie_conforme(t_partieID)) //Si il y a une partie en cours, retourne 0 ou que le ID ne correspond pas
 	{
 		return 0;
 	}
