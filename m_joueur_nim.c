@@ -32,7 +32,16 @@ int declencher_coup_joueur(const t_partieID* sonID) {
 		guidejeu(void);
 
 		aff_jeu_actuel(void);
+
 		int ligne_choisi;
+
+		ligne_jeu(void);
+
+		int jetons_choisi;
+
+		jetons_jeu(void);
+
+
 
 		
 
@@ -85,8 +94,8 @@ void aff_jeu_actuel(void) {
 void ligne_jeu(void) {
 	
 	printf("Choisi une ligne : ");
-	scanf(" ", &ligne_choisi);
-	while (ligne_choisi > NB_LIGNES_NIM || partie_joueur.jetons_actuel[(ligne_choisi - 1)] == 0) { //si la ligne est plus grande que le tableau ou qu'il n'y a plus de jetons dans la ligne choisi
+	scanf(" ", &ligne_choisi); 
+	while (ligne_choisi > NB_LIGNES_NIM || partie_joueur.jetons_actuel[(ligne_choisi - 1)] == 0 || ligne_choisi <= 0) { //si la ligne est plus grande que le tableau ou qu'il n'y a plus de jetons dans la ligne choisi ou que le input est 0 
 		
 		printf("\nERREUR : ligne invalide");
 		printf("\nChoisi une autre ligne : ");
@@ -98,9 +107,15 @@ void ligne_jeu(void) {
 
 void jetons_jeu(void) {
 
-	int jetons_choisi;
+	
 	printf("Choisi le nombre de jetons a retirer : ");
 	scanf(" ", &jetons_choisi);
-	while(jetons_choisi>)
+	while (jetons_choisi > partie_joueur.jetons_actuel[(ligne_choisi)] || jetons_choisi <= 0) { //si le nombre est plus grand que le nb disponible de jetons ou 0
+
+		printf("\nERREUR : nombre de jetons invalide");
+		printf("\nChoisi un autre nombre : ");
+		scanf(" ", &ligne_choisi);
+
+	} // repeter jusqua avoir un nb valide
 
 }
