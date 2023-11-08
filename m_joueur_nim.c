@@ -40,7 +40,7 @@ int declencher_coup_joueur(const t_partieID* sonID) {
 		int jetons_choisi;
 
 		jetons_jeu(void);
-
+		
 
 
 		

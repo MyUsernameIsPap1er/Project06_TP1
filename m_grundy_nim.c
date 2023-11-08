@@ -31,6 +31,7 @@ int declencher_coup_grundy(const t_partieID) {
 	{
 		return 0;
 	}
+
 	/*Déclancher l'algorithme grundy: 
 	
 	1- Représenter le nb de pièces sur chacune des lignes du jeu en binaire dans la ligne corresspondantes d'une matrice d'entiers
