@@ -16,6 +16,7 @@ typedef struct {
 t_point2D somme2D(t_point2D p0, t_point2D p1);
 t_point2D somme2D(t_point2D p0, t_point2D p1) {
 
+
 }
 
 /*================================================================*/
