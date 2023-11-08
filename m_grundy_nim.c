@@ -80,7 +80,7 @@ int declencher_coup_grundy(const t_partieID) {
 		addition_tablo_add += tableau_addition[j]; // additionne les valeurs du tableau d'addition
 	}
 	if (addition_tablo_add % 2 == 0) {  //si résultat de l'addition est pair->structure pair sinon impair
-		...
+		... 
 	}
 }
 /*==========================================================*//*==========================================================*/
