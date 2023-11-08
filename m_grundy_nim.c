@@ -49,7 +49,18 @@ int declencher_coup_grundy(const t_partieID) {
 	*/ 
 
 	//1
-	
+	for (size_t i = 0; i < NB_LIGNES_NIM; ++i)
+	{
+		int quotient = partie_grundy.jetons_actuel[i]; // Initialisation de "quotient" contenant le nombre de jetons à la position "i" de la partie_grundy
+
+		for (size_t j = 0; j < NB_REP_BINAIRE; ++j) // Loop pour convertir le nombre de jetons en binaire
+		{
+			matice_grundy[i][j] = quotient % 2; // Rempli la case avec le modulo de "quotient" (le bit)
+
+			quotient /= 2; // Divise par deux et loop pour continuer la conversion
+		}
+	}
+
 }
 /*==========================================================*//*==========================================================*/
 void terminer_partie_grundy(const t_partieID) {
