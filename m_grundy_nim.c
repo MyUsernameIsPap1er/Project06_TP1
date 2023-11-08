@@ -47,6 +47,9 @@ int declencher_coup_grundy(const t_partieID) {
 	6- Zéro = structure paire (si adversaire est continuellement en structure paire il ne peut pas gagner) 
 
 	*/ 
+
+	//1
+	
 }
 /*==========================================================*//*==========================================================*/
 void terminer_partie_grundy(const t_partieID) {

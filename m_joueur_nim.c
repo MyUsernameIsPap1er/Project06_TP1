@@ -52,6 +52,7 @@ int declencher_coup_joueur(const t_partieID* sonID) {
 }
 
 void terminer_partie_joueur(const t_partieID sonID) {
+	valider_coup_joueur();
 
 }
 
