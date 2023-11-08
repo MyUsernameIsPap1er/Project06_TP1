@@ -50,7 +50,7 @@ int declencher_coup_grundy(const t_partieID) {
 	*/ 
 
 	//1
-	for (size_t i = 0; i < NB_LIGNES_NIM; ++i)
+	for (size_t i = 0; i < NB_LIGNES_NIM; ++i) // Loop à travers les lignes de l'array de jetons
 	{
 		int quotient = partie_grundy.jetons_actuel[i]; // Initialisation de "quotient" contenant le nombre de jetons à la position "i" de la partie_grundy
 
