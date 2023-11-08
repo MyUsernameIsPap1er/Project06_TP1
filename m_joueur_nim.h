@@ -103,6 +103,40 @@ int declencher_coup_joueur(const t_partieID sonID);
 void terminer_partie_joueur(const t_partieID sonID);
 
 /*==========================================================*/
+
+/*Fonction qui efface l'ecran*/
+
+void cls(void);
+
+/*==========================================================*/
+
+/*
+0 - celle qui assure la boucle d'obtention d'une ligne du jeu et
+d'un nombre correct de jetons à prendre à l'aide des 4 suivantes
+*/
+
+/*
+1 - efface l'écran pour afficher  la page d'aide du jeu
+"en résumé choisir une ligne non-vide pour y prendre entre 1
+et tous les jetons "
+*/
+void guidejeu(void);
+/*
+2 - efface l'écran pour afficher le jeu 
+"en résumé sur chaque ligne, les jetons présents et les jetons 
+absents différenciés " 
+*/
+
+/*
+3 - qui obtient(un beau scanf) le numéro d'une ligne non-vide (espérons-le)
+*/
+
+/*
+4 - qui obtient(un beau scanf) le nombre de jetons à prendre sur cette ligne
+*/
+
+
+/*==========================================================*/
 #endif	
 /*==========================================================*/
 

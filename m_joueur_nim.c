@@ -23,10 +23,32 @@ int init_partie_joueur(const t_partie_infos* partie) { //recoie info de la parti
 
 int declencher_coup_joueur(const t_partieID sonID) {
 
+	if (get_partie_joueur_en_cours || strcmp(sonID,partie_joueur)) {
 
+		updater_jeu_joueur();
+		
 
+		
+
+		return 1;
+	}
+
+	return 0;
 }
 
 void terminer_partie_joueur(const t_partieID sonID) {
+
+}
+
+void cls(void) {
+	system("cls"); //fait la meme chose que cls sur cmd
+}
+
+void guidejeu(void) {
+	cls();
+	printf("\nC'est votre tour!");
+	printf("\n\nChoisi une ligne avec un\des jetons");
+	printf("\net prends le nombre de jetons de ton choix...");
+
 
 }
