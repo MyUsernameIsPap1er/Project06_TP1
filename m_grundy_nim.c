@@ -61,7 +61,6 @@ int declencher_coup_grundy(const t_partieID) {
 			quotient /= 2; // Divise par deux et loop pour continuer la conversion
 		}
 	}
-	//2
 
 	//2
 	int tableau_addition[8] = { 0 }; // Tableau contenant les additions des bits, rempli avec des 0
@@ -75,7 +74,14 @@ int declencher_coup_grundy(const t_partieID) {
 	}
 
 	//3
-
+	int addition_tablo_add = 0;
+	for (size_t j = 0; j < NB_REP_BINAIRE; j++) //loop dans les colonnes pour permettre la lecture de ceux-ci
+	{
+		addition_tablo_add += tableau_addition[j]; // additionne les valeurs du tableau d'addition
+	}
+	if (addition_tablo_add % 2 == 0) {  //si résultat de l'addition est pair->structure pair sinon impair
+		
+	}
 }
 /*==========================================================*//*==========================================================*/
 void terminer_partie_grundy(const t_partieID) {
