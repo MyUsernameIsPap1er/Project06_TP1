@@ -37,7 +37,7 @@ int jouer_la_partie(void) {
 
 int valider_coup_joueur(t_partie_infos* partie_joueur, int ligne, int nb_pièce) {
 
-	}
+	
 }
 
 

@@ -31,6 +31,7 @@ int declencher_coup_grundy(const t_partieID) {
 	{
 		return 0;
 	}
+
 	/*Déclancher l'algorithme grundy: 
 	
 	1- Représenter le nb de pièces sur chacune des lignes du jeu en binaire dans la ligne corresspondantes d'une matrice d'entiers
@@ -47,6 +48,40 @@ int declencher_coup_grundy(const t_partieID) {
 	6- Zéro = structure paire (si adversaire est continuellement en structure paire il ne peut pas gagner) 
 
 	*/ 
+
+	//1
+	for (size_t i = 0; i < NB_LIGNES_NIM; ++i) // Loop à travers les lignes de l'array de jetons
+	{
+		int quotient = partie_grundy.jetons_actuel[i]; // Initialisation de "quotient" contenant le nombre de jetons à la position "i" de la partie_grundy
+
+		for (size_t j = 0; j < NB_REP_BINAIRE; ++j) // Loop pour convertir le nombre de jetons en binaire
+		{
+			matice_grundy[i][j] = quotient % 2; // Rempli la case avec le modulo de "quotient" (le bit)
+
+			quotient /= 2; // Divise par deux et loop pour continuer la conversion
+		}
+	}
+
+	//2
+	int tableau_addition[8] = { 0 }; // Tableau contenant les additions des bits, rempli avec des 0
+
+	for (size_t j = 0; j < NB_REP_BINAIRE; j++) // Loop dans les colonnes
+	{
+		for (size_t i = 0; i < NB_LIGNES_NIM; i++) //Loop dans les lignes
+		{
+			tableau_addition[j] += matice_grundy[i][j]; //enregistre l'addition de tous les bits d'une colonne
+		}
+	}
+
+	//3
+	int addition_tablo_add = 0;
+	for (size_t j = 0; j < NB_REP_BINAIRE; j++) //loop dans les colonnes pour permettre la lecture de ceux-ci
+	{
+		addition_tablo_add += tableau_addition[j]; // additionne les valeurs du tableau d'addition
+	}
+	if (addition_tablo_add % 2 == 0) {  //si résultat de l'addition est pair->structure pair sinon impair
+		
+	}
 }
 /*==========================================================*//*==========================================================*/
 void terminer_partie_grundy(const t_partieID) {
