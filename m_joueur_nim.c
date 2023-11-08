@@ -21,16 +21,18 @@ int init_partie_joueur(const t_partie_infos* partie) { //recoie info de la parti
 	return 1; // success de init retourne 1///
 }
 
-int declencher_coup_joueur(const t_partieID sonID) {
+int declencher_coup_joueur(const t_partieID* sonID) {
 
-	if (get_partie_joueur_en_cours || strcmp(sonID,partie_joueur.id_partie)) {
+	
+
+	if (get_partie_joueur_en_cours || strcmp(*sonID,partie_joueur.id_partie)) {
 
 		updater_jeu_joueur();
 
 		guidejeu(void);
 
 		aff_jeu_actuel(void);
-
+		int ligne_choisi;
 
 		
 
@@ -78,4 +80,27 @@ void aff_jeu_actuel(void) {
 		printf("  %d  ", jetons_absent[i]);
 	}
 	system("PAUSE");
+}
+
+void ligne_jeu(void) {
+	
+	printf("Choisi une ligne : ");
+	scanf(" ", &ligne_choisi);
+	while (ligne_choisi > NB_LIGNES_NIM || partie_joueur.jetons_actuel[(ligne_choisi - 1)] == 0) { //si la ligne est plus grande que le tableau ou qu'il n'y a plus de jetons dans la ligne choisi
+		
+		printf("\nERREUR : ligne invalide");
+		printf("\nChoisi une autre ligne : ");
+		scanf(" ", &ligne_choisi);
+
+	}//repeter jusqua avoir un choix valide
+
+}
+
+void jetons_jeu(void) {
+
+	int jetons_choisi;
+	printf("Choisi le nombre de jetons a retirer : ");
+	scanf(" ", &jetons_choisi);
+	while(jetons_choisi>)
+
 }
