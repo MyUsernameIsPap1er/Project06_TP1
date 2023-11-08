@@ -126,15 +126,16 @@ void guidejeu(void);
 "en résumé sur chaque ligne, les jetons présents et les jetons 
 absents différenciés " 
 */
+void aff_jeu_actuel(void);
 
 /*
 3 - qui obtient(un beau scanf) le numéro d'une ligne non-vide (espérons-le)
 */
-
+void ligne_jeu(void);
 /*
 4 - qui obtient(un beau scanf) le nombre de jetons à prendre sur cette ligne
 */
-
+void jetons_jeu(void);
 
 /*==========================================================*/
 #endif	
