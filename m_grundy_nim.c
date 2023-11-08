@@ -61,6 +61,7 @@ int declencher_coup_grundy(const t_partieID) {
 			quotient /= 2; // Divise par deux et loop pour continuer la conversion
 		}
 	}
+	//2
 
 }
 /*==========================================================*//*==========================================================*/
