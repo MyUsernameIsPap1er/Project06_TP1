@@ -27,7 +27,7 @@ int declencher_coup_joueur(const t_partieID* sonID) {
 
 	if (get_partie_joueur_en_cours || strcmp(*sonID,partie_joueur.id_partie)) {
 
-		updater_jeu_joueur();
+		updater_jeu_joueur(); 
 
 		guidejeu(void);
 
