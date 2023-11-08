@@ -62,6 +62,19 @@ int declencher_coup_grundy(const t_partieID) {
 		}
 	}
 
+	//2
+	int tableau_addition[8] = { 0 }; // Tableau contenant les additions des bits, rempli avec des 0
+
+	for (size_t j = 0; j < NB_REP_BINAIRE; j++) // Loop dans les colonnes
+	{
+		for (size_t i = 0; i < NB_LIGNES_NIM; i++) //Loop dans les lignes
+		{
+			tableau_addition[j] += matice_grundy[i][j]; //enregistre l'addition de tous les bits d'une colonne
+		}
+	}
+
+	//3
+
 }
 /*==========================================================*//*==========================================================*/
 void terminer_partie_grundy(const t_partieID) {
