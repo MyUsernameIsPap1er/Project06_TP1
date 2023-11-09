@@ -86,5 +86,8 @@ int declencher_coup_grundy(const t_partieID) {
 /*==========================================================*//*==========================================================*/
 void terminer_partie_grundy(const t_partieID) {
 	valider_coup_grundy();
+	if (partie_grundy_en_cours || tester_partie_conforme(t_partieID)) {
+		partie_grundy_en_cours = 0;
+	}
 }
 /*==========================================================*//*==========================================================*/
