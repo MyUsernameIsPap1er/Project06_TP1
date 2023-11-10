@@ -80,7 +80,7 @@ int declencher_coup_grundy(const t_partieID) {
 			tableau_nim_binaire[j] += matice_grundy[i][j]; //sert simplement à mettre le bit à 1
 		}
 
-		if (tableau_nim_binaire[j] == 1) // Ce if sert à convertir directement le numéro de nim binaire contenu dans  en décimal
+		if (tableau_nim_binaire[j] == 1) // Ce if sert à convertir directement le numéro de nim binaire en décimal
 		{
 			numero_nim += (int)(pow(2, j));
 		}
