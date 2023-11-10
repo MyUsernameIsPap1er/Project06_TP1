@@ -31,13 +31,12 @@ int tester_jeu_conforme(const t_tablo_jeu jeu) {
 	
 	for (int i = 0; i < NB_LIGNES_NIM; i += 1) {
 		
-		if (jeu[i] < 0) { // regarde si chaque valeur vaut plus que 0
+		if (jeu[i] < 0 || jeu[i] > NB_JETONS_MAX) { // regarde si chaque valeur vaut plus que 0
 			
 			return 0; // retourne 0 si non
 		}
 	}
 	
-	assert(jeu[0] < 0);
 
 	return 1; // retourne 1 si oui
 }

@@ -32,24 +32,8 @@ int declencher_coup_grundy(const t_partieID* sonID, int* ligne, int* nb_jetons) 
 	{
 		return 0;
 	}
-	updater_jeu_grundy();
 
-	/*Déclancher l'algorithme grundy:
 
-	1- Représenter le nb de pièces sur chacune des lignes du jeu en binaire dans la ligne corresspondantes d'une matrice d'entiers
-	cette matrice est définie avec une ligne de plus que le nb de lignes du jeu
-
-	2- Maintenant dans chq case de la dernière  ligne de la matrice  faites la sommes des valeurs qui viennent au-dessus d'elle dans sa colonne
-
-	3- Si tts les val sur la dernière ligne de la matrice sont paires, in sera dans une structure paire sinon ce sera une structure impaire
-
-	4-Structure paire et d'un coup valide-> joueur amène jeu vers structure impaire
-
-	5-Structure impaire-> joueur a tjrs l'opportunité de ramener le jeu en structure pair d'un coup valide
-
-	6- Zéro = structure paire (si adversaire est continuellement en structure paire il ne peut pas gagner)
-
-	*/
 
 	//1
 	for (size_t i = 0; i < NB_LIGNES_NIM; ++i) // Loop à travers les lignes de l'array de jetons
@@ -143,3 +127,19 @@ void terminer_partie_grundy(const t_partieID) {
 	}
 }
 /*==========================================================*//*==========================================================*/
+	/*Déclancher l'algorithme grundy:
+
+	1- Représenter le nb de pièces sur chacune des lignes du jeu en binaire dans la ligne corresspondantes d'une matrice d'entiers
+	cette matrice est définie avec une ligne de plus que le nb de lignes du jeu
+
+	2- Maintenant dans chq case de la dernière  ligne de la matrice  faites la sommes des valeurs qui viennent au-dessus d'elle dans sa colonne
+
+	3- Si tts les val sur la dernière ligne de la matrice sont paires, in sera dans une structure paire sinon ce sera une structure impaire
+
+	4-Structure paire et d'un coup valide-> joueur amène jeu vers structure impaire
+
+	5-Structure impaire-> joueur a tjrs l'opportunité de ramener le jeu en structure pair d'un coup valide
+
+	6- Zéro = structure paire (si adversaire est continuellement en structure paire il ne peut pas gagner)
+
+	*/
