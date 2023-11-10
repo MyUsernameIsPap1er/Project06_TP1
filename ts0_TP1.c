@@ -110,6 +110,11 @@ double norme2D(t_point2D p) {
 	return sqrt(p.x * p.x + p.y * p.y);
 }
 
+#if 1
+
+
+#endif // 1
+
 
 
 

@@ -33,6 +33,7 @@ int init_nouvelle_partie(void) {
 int jouer_la_partie(void) {
 
 	
+	
 }
 
 int valider_coup_joueur(t_partie_infos* partie_joueur, int ligne, int nb_pièce) {
@@ -55,8 +56,10 @@ int updater_jeu_grundy(t_partie_infos* partie_grundy) {
 
 }
 
-void set_nouvelle_partie() {
+void set_nouvelle_partie(t_partie_infos partie) {
 
+	partie.jetons_actuel = { 0 };
+	partie.jetons_actuel = { 0 };
 }
 
 int tester_partie_conforme(const t_partie_infos* partie) {
