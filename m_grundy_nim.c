@@ -128,7 +128,8 @@ int declencher_coup_grundy(const t_partieID) {
 		}
 	}
 
-	//modifier_jeu(partie_grundy.jetons_actuel, ligne_coup, nb_jetons_soustraire); // Retire le nombre de jetons à la ligne déterminée
+	modifier_jeu(partie_grundy.jetons_actuel, ligne_coup, nb_jetons_soustraire); // Retire le nombre de jetons à la ligne déterminée
+
 	valider_coup_grundy();
 }
 	
