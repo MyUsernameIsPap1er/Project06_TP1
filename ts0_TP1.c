@@ -7,29 +7,25 @@
 /*==========================================================*/
 
 #include "m_types_const_nim.h"
+#include "m_controle_nim.h"
+#include "m_grundy_nim.h"
+#include "mtwister.h"
+#include "m_joueur_nim.h"
 /*==========================================================*/
-typedef struct {
-	double x;
-	double y;
-}t_point2D;
+
 /*==========================================================================*/
-t_point2D somme2D(t_point2D p0, t_point2D p1);
-t_point2D somme2D(t_point2D p0, t_point2D p1) {
 
 
-}
+
+
 
 /*================================================================*/
-double norme2D(t_point2D p);
+
 
 
 /*=========================================================*/
 
-typedef struct {
-	double x;
-	double y;
-	double z;
-}t_point3D;
+
 /*=========================================================*/
 
 #if 0
@@ -106,9 +102,7 @@ int main(void) {
 #endif
 //=========================================================
 
-double norme2D(t_point2D p) {
-	return sqrt(p.x * p.x + p.y * p.y);
-}
+
 
 #if 1
 
@@ -130,7 +124,14 @@ int main(void) {
 }
 #endif
 
-
+#if 1
+int main(void) {
+	mt_srandSys();
+	jouer_la_partie();
+	system("pause");
+	return EXIT_SUCCESS;
+}
+#endif
 
 
 

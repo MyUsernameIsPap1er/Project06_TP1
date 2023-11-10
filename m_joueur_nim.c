@@ -21,7 +21,7 @@ int init_partie_joueur(const t_partie_infos* partie) { //recoie info de la parti
 	return 1; // success de init retourne 1///
 }
 
-int declencher_coup_joueur(const t_partieID* sonID, &ligne, &nb_jetons) {
+int declencher_coup_joueur(const t_partieID* sonID, int*ligne, int*nb_jetons) {
 
 	
 

@@ -89,7 +89,7 @@ int init_partie_joueur(const t_partie_infos* partie);
 	sinon l'algorithme important documenté plus haut est déclenché
 */
 
-int declencher_coup_joueur(const t_partieID* sonID, &ligne, &nb_jetons);
+int declencher_coup_joueur(const t_partieID* sonID, int* ligne, int* nb_jetons);
 
  /*==========================================================*/
  /*
