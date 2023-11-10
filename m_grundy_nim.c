@@ -26,14 +26,14 @@ int init_partie_grundy(const t_partie_infos* partie) {
 }
 /*==========================================================*//*==========================================================*/
 int declencher_coup_grundy(const t_partieID) {
-	
+
 	if (partie_grundy_en_cours || tester_partie_conforme(t_partieID)) //Si il y a une partie en cours, retourne 0 ou que le ID ne correspond pas
 	{
 		return 0;
 	}
 
-	/*Déclancher l'algorithme grundy: 
-	
+	/*Déclancher l'algorithme grundy:
+
 	1- Représenter le nb de pièces sur chacune des lignes du jeu en binaire dans la ligne corresspondantes d'une matrice d'entiers
 	cette matrice est définie avec une ligne de plus que le nb de lignes du jeu
 
@@ -45,9 +45,9 @@ int declencher_coup_grundy(const t_partieID) {
 
 	5-Structure impaire-> joueur a tjrs l'opportunité de ramener le jeu en structure pair d'un coup valide
 
-	6- Zéro = structure paire (si adversaire est continuellement en structure paire il ne peut pas gagner) 
+	6- Zéro = structure paire (si adversaire est continuellement en structure paire il ne peut pas gagner)
 
-	*/ 
+	*/
 
 	//1
 	for (size_t i = 0; i < NB_LIGNES_NIM; ++i) // Loop à travers les lignes de l'array de jetons
@@ -63,15 +63,42 @@ int declencher_coup_grundy(const t_partieID) {
 	}
 
 	//2
-	int tableau_addition[8] = { 0 }; // Tableau contenant les additions des bits, rempli avec des 0
+	int tableau_nim_binaire[8] = { 0 }; // Tableau contenant un bit (0 ou 1) qui représente la parité des colonnes respectives de matice_grundy
+	int numero_nim = 0; // Nombre résultants de l
+	int structure_status; //Status de la structure (pair = 0, impaire 1)
+	int nb_jetons_soustraire = 0;
 
-	for (size_t j = 0; j < NB_REP_BINAIRE; j++) // Loop dans les colonnes
+	for (size_t j = 0; j < NB_REP_BINAIRE; j++) // Loop de colonne en colonne
 	{
-		for (size_t i = 0; i < NB_LIGNES_NIM; i++) //Loop dans les lignes
+		for (size_t i = 0; i < NB_LIGNES_NIM; i++) // Loop de ligne en ligne
 		{
-			tableau_addition[j] += matice_grundy[i][j]; //enregistre l'addition de tous les bits d'une colonne
+			if (tableau_nim_binaire[j] == 1 && matice_grundy[i][j] == 1) // Regarde si le bit présent dans tableau_addition[j] est 1, si oui et																	  
+			{														     // que le bit lu dans matice_grundy[i][j] est aussi 1, on remet le bit à 0
+				tableau_nim_binaire[j] = 0;
+			}
+
+			tableau_nim_binaire[j] += matice_grundy[i][j]; //sert simplement à mettre le bit à 1
+		}
+
+		if (tableau_nim_binaire[j] == 1) // Ce if sert à convertir directement le numéro de nim binaire contenu dans  en décimal
+		{
+			numero_nim += (int)(pow(2, j));
 		}
 	}
+	if (numero_nim > 0)
+	{
+		structure_status = 1;
+	}
+	
+	if (structure_status == 1)
+	{
+		nb_jetons_soustraire = (int)mt_randf(4, 25);
+	}
+	else
+	{
+		nb_jetons_soustraire = numero_nim;
+	}
+
 
 	//3
 	int addition_tablo_add = 0;
