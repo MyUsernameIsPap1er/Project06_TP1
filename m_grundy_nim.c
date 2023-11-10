@@ -27,7 +27,7 @@ int init_partie_grundy(const t_partie_infos* partie) {
 /*==========================================================*//*==========================================================*/
 int declencher_coup_grundy(const t_partieID) {
 
-	if (partie_grundy_en_cours || tester_partie_conforme(t_partieID)) //Si il y a une partie en cours, retourne 0 ou que le ID ne correspond pas
+	if (partie_grundy_en_cours || strcmp(*sonID, partie_grundy.id_partie)) //Si il y a une partie en cours, retourne 0 ou que le ID ne correspond pas
 	{
 		return 0;
 	}
@@ -92,30 +92,20 @@ int declencher_coup_grundy(const t_partieID) {
 	
 	if (structure_status == 1)
 	{
-		nb_jetons_soustraire = (int)mt_randf(4, 25);
+		nb_jetons_soustraire = (int)mt_randf(4, 25); //si résultat de l'addition est pair->structure pair enlever un nombre paire de jetons dans une ligne pour garder la structure pair
 	}
 	else
 	{
-		nb_jetons_soustraire = numero_nim;
+		nb_jetons_soustraire = numero_nim;    //si resultat de l'addition est impair enlever un nombre x de jetons pour remettre la structure pair
 	}
 
 
 	//3
-	int addition_tablo_add = 0;
-	for (size_t j = 0; j < NB_REP_BINAIRE; j++) //loop dans les colonnes pour permettre la lecture de ceux-ci
-	{
-		addition_tablo_add += tableau_addition[j]; // additionne les valeurs du tableau d'addition
-	}
-	if (addition_tablo_add % 2 == 0) {  //si résultat de l'addition est pair->structure pair sinon impair
-		                               //enlever un nombre paire de jetons dans une ligne pour garder  la structure pair	
-		
-		}
-	                                  //si resultat de l'addition est impair enlever un nombre x de jetons pour remettre la structure pair
-}
+	
 /*==========================================================*//*==========================================================*/
 void terminer_partie_grundy(const t_partieID) {
 	valider_coup_grundy();
-	if (partie_grundy_en_cours || tester_partie_conforme(t_partieID)) {
+	if (partie_grundy_en_cours || strcmp(*sonID, partie_grundy.id_partie)) {
 		partie_grundy_en_cours = 0;
 	}
 }
