@@ -31,6 +31,7 @@ int declencher_coup_grundy(const t_partieID) {
 	{
 		return 0;
 	}
+	updater_jeu_grundy();
 
 	/*Déclancher l'algorithme grundy:
 
@@ -127,13 +128,13 @@ int declencher_coup_grundy(const t_partieID) {
 		}
 	}
 
-	modifier_jeu(partie_grundy.jetons_actuel, ligne_coup, nb_jetons_soustraire); // Retire le nombre de jetons à la ligne déterminée
+	//modifier_jeu(partie_grundy.jetons_actuel, ligne_coup, nb_jetons_soustraire); // Retire le nombre de jetons à la ligne déterminée
+	valider_coup_grundy();
 }
-	//3
+	
 	
 /*==========================================================*//*==========================================================*/
 void terminer_partie_grundy(const t_partieID) {
-	valider_coup_grundy();
 	if (partie_grundy_en_cours || strcmp(*sonID, partie_grundy.id_partie)) {
 		partie_grundy_en_cours = 0;
 	}
