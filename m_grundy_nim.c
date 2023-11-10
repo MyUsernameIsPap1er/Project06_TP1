@@ -87,30 +87,32 @@ int declencher_coup_grundy(const t_partieID) {
 		}
 	}
 	if (numero_nim > 0) // Si numero_nim est plus grand que 0, nous somme dans une structure impaire donc structure_status = 1
-		                // Sinon la variable structure_status reste 0 et signifie que la structure est pair
+		// Sinon la variable structure_status reste 0 et signifie que la structure est pair
 	{
 		structure_status = 1;
 	}
-	
+
 	if (structure_status == 0) // Si la structure est pair, retire un nombre random de jetons dans une ligne random du jeu. S'assure aussi que le nombre de jetons à retirer est valide
 	{
 
 		ligne_coup = mt_randi(NB_LIGNES_NIM + 1) - 1; // Choisi une ligne entre 0 et 20
 		nb_jetons_soustraire = mt_randi(partie_grundy.jetons_actuel[ligne_coup]); // Choisi un nombre de jetons entre 1 et la valeur de jetons présent à la ligne déterminer juste avant
 
-		
+
 	}
 	else
 	{
-		for (size_t i = 0; i < NB_LIGNES_NIM; i++)
+		for (size_t i = 0; i < NB_LIGNES_NIM; i++) // Loop entre les lignes pour trouver la bonne ligne qui supporte la soustraction
 		{
 			int jetons_post_soustraction = 0;
 
-			for (size_t j = 0; j < NB_REP_BINAIRE; ++j)
+			for (size_t j = 0; j < NB_REP_BINAIRE; ++j) // Loop entre les colonnes et calcul le nombre de jetons en binaire (en convertissant au fur et a mesure en decimal) qui devrait être
+														// sur la ligne pour que la structure soit pair. Ce nombre (jetons_post_soustraction) sera soustrais (SI POSSIBLE, sinon on reloop) au
+														// nombre de jetons présent sur la ligne (jeu actuel) ce qui determinera la valeur de nb_jetons_soustraire
 			{
 				if (matice_grundy[i][j] != tableau_nim_binaire[j])
 				{
-					jetons_post_soustraction += (int)(pow(2, j));
+					jetons_post_soustraction += (int)(pow(2, j)); // conversion en décimal
 				}
 			}
 
@@ -123,11 +125,10 @@ int declencher_coup_grundy(const t_partieID) {
 
 			nb_jetons_soustraire = 0;
 		}
-		
 	}
 
 	modifier_jeu(partie_grundy.jetons_actuel, ligne_coup, nb_jetons_soustraire); // Retire le nombre de jetons à la ligne déterminée
-
+}
 	//3
 	
 /*==========================================================*//*==========================================================*/
