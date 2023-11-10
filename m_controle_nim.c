@@ -49,6 +49,11 @@ int jouer_la_partie(void) {
 			updater_jeu_joueur(partie_joueur);
 
 			declencher_coup_joueur(partie_joueur.id_partie, &ligne, &nb_jetons);
+			
+			valider_coup_joueur();
+
+			terminer_partie_joueur(partie_joueur.id_partie);
+
 		}
 
 		if (tour_de == GRUNDY)
@@ -58,7 +63,9 @@ int jouer_la_partie(void) {
 
 			declencher_coup_grundy(partie_grundy.id_partie, &ligne, &nb_jetons);
 
+			valider_coup_grundy();
 
+			terminer_partie_grundy(partie_grundy.id_partie);
 		}
 	}
 
