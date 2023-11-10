@@ -56,7 +56,7 @@ int declencher_coup_grundy(const t_partieID) {
 
 		for (size_t j = 0; j < NB_REP_BINAIRE; ++j) // Loop pour convertir le nombre de jetons en binaire
 		{
-			matice_grundy[i][j] = quotient % 2; // Rempli la case avec le modulo de "quotient" (le bit)
+			noyau_grundy[i][j] = quotient % 2; // Rempli la case avec le modulo de "quotient" (le bit)
 
 			quotient /= 2; // Divise par deux et loop pour continuer la conversion
 		}
@@ -66,18 +66,19 @@ int declencher_coup_grundy(const t_partieID) {
 	int tableau_nim_binaire[8] = { 0 }; // Tableau contenant un bit (0 ou 1) qui représente la parité des colonnes respectives de matice_grundy (opération XOR dans chaque colonne)
 	int numero_nim = 0; // Nombre résultant de la conversion binaire-décimale du nombre binaire contenu dans tableau_nim_binaire
 	int structure_status; // Status de la structure (pair = 0, impaire = 1)
-	int nb_jetons_soustraire = 0; // Nombre de jetons à retirer par le coup de grundy
+	int ligne_coup; // Ligne sur laquelle grundy va jouer
+	int nb_jetons_soustraire; // Nombre de jetons à retirer par le coup de grundy
 
 	for (size_t j = 0; j < NB_REP_BINAIRE; j++) // Loop de colonne en colonne
 	{
 		for (size_t i = 0; i < NB_LIGNES_NIM; i++) // Loop de ligne en ligne
 		{
-			if (tableau_nim_binaire[j] == 1 && matice_grundy[i][j] == 1) // Regarde si le bit présent dans tableau_addition[j] est 1, si oui et																	  
+			if (tableau_nim_binaire[j] == 1 && noyau_grundy[i][j] == 1) // Regarde si le bit présent dans tableau_addition[j] est 1, si oui et																	  
 			{														     // que le bit lu dans matice_grundy[i][j] est aussi 1, on remet le bit à 0
 				tableau_nim_binaire[j] = 0;
 			}
 
-			tableau_nim_binaire[j] += matice_grundy[i][j]; //sert simplement à mettre le bit à 1
+			tableau_nim_binaire[j] += noyau_grundy[i][j]; //sert simplement à mettre le bit à 1
 		}
 
 		if (tableau_nim_binaire[j] == 1) // Ce if sert à convertir directement le numéro de nim binaire en décimal
@@ -91,15 +92,41 @@ int declencher_coup_grundy(const t_partieID) {
 		structure_status = 1;
 	}
 	
-	if (structure_status == 0) // Si la structure est pair, déterminer un nombre random de jetons à enlever dans une ligne random du jeu. S'assure aussi que le nombre de jetons est valide
+	if (structure_status == 0) // Si la structure est pair, retire un nombre random de jetons dans une ligne random du jeu. S'assure aussi que le nombre de jetons à retirer est valide
 	{
-		nb_jetons_soustraire = mt_randi(partie_grundy.jetons_actuel[mt_randi(NB_LIGNES_NIM + 1) - 1]);
+
+		ligne_coup = mt_randi(NB_LIGNES_NIM + 1) - 1; // Choisi une ligne entre 0 et 20
+		nb_jetons_soustraire = mt_randi(partie_grundy.jetons_actuel[ligne_coup]); // Choisi un nombre de jetons entre 1 et la valeur de jetons présent à la ligne déterminer juste avant
+
+		
 	}
-	else // Si structure_status n'est pas 0, elle est impaire, et donc le nombre de jetons à enlever est le numéro de nim
+	else
 	{
-		nb_jetons_soustraire = numero_nim;    
+		for (size_t i = 0; i < NB_LIGNES_NIM; i++)
+		{
+			int jetons_post_soustraction = 0;
+
+			for (size_t j = 0; j < NB_REP_BINAIRE; ++j)
+			{
+				if (matice_grundy[i][j] != tableau_nim_binaire[j])
+				{
+					jetons_post_soustraction += (int)(pow(2, j));
+				}
+			}
+
+			if (partie_grundy.jetons_actuel[i] >= jetons_post_soustraction)
+			{
+				nb_jetons_soustraire = partie_grundy.jetons_actuel[i] - jetons_post_soustraction;
+				ligne_coup = i;
+				break;
+			}
+
+			nb_jetons_soustraire = 0;
+		}
+		
 	}
 
+	modifier_jeu(partie_grundy.jetons_actuel, ligne_coup, nb_jetons_soustraire); // Retire le nombre de jetons à la ligne déterminée
 
 	//3
 	
