@@ -107,8 +107,10 @@ int declencher_coup_grundy(const t_partieID) {
 		addition_tablo_add += tableau_addition[j]; // additionne les valeurs du tableau d'addition
 	}
 	if (addition_tablo_add % 2 == 0) {  //si résultat de l'addition est pair->structure pair sinon impair
-		... 
-	}
+		                               //enlever un nombre paire de jetons dans une ligne pour garder  la structure pair	
+		
+		}
+	                                  //si resultat de l'addition est impair enlever un nombre x de jetons pour remettre la structure pair
 }
 /*==========================================================*//*==========================================================*/
 void terminer_partie_grundy(const t_partieID) {
