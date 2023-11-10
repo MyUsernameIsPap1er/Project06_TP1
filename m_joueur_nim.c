@@ -54,7 +54,7 @@ void terminer_partie_joueur(const t_partieID* sonID) {
 	if (partie_joueur_en_cours || strcmp(*sonID, partie_joueur.id_partie)) {
 		partie_joueur_en_cours = 0;
 	}
-	valider_coup_joueur();
+	
 
 }
 
