@@ -50,7 +50,7 @@ int jouer_la_partie(void) {
 
 			declencher_coup_joueur(partie_joueur.id_partie, &ligne, &nb_jetons);
 			
-			valider_coup_joueur();
+			valider_coup_joueur(partie_joueur.id_partie, &ligne, &nb_jetons);
 
 			terminer_partie_joueur(partie_joueur.id_partie);
 
