@@ -32,7 +32,7 @@ typedef struct {
 }t_point3D;
 /*=========================================================*/
 
-#if 1
+#if 0
 int main(void) {
 
 	t_point2D p0={ 5.1 , -1.2 };
@@ -111,7 +111,19 @@ double norme2D(t_point2D p) {
 }
 
 
-
+#if 0
+int main(void) {
+	mt_srandSys();
+	t_tablo_jeu jeu = { 0 };
+	init_jeu_alea(jeu);
+	for (size_t i = 0; i < NB_LIGNES_NIM; i++)
+	{
+		printf("\n %d", jeu[i]);
+	}
+	system("pause");
+	return EXIT_SUCCESS;
+}
+#endif
 
 
 
