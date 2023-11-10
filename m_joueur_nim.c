@@ -41,7 +41,9 @@ int declencher_coup_joueur(const t_partieID* sonID, &ligne, &nb_jetons) {
 
 		jetons_jeu(void);
 		
-		return 1;
+		*nb_jetons = jetons_choisi;
+		*ligne = ligne_choisi;
+	
 
 	}
 
@@ -115,7 +117,7 @@ void jetons_jeu(void) {
 
 		printf("\nERREUR : nombre de jetons invalide");
 		printf("\nChoisi un autre nombre : ");
-		scanf(" ", &ligne_choisi);
+		scanf(" ", &jetons_choisi);
 
 	} // repeter jusqua avoir un nb valide
 
