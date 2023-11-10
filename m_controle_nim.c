@@ -31,7 +31,7 @@ int init_nouvelle_partie(void) {
 }
 
 int jouer_la_partie(void) {
-	get_part
+	
 	
 	
 }
@@ -44,7 +44,7 @@ int valider_coup_joueur(t_partie_infos* partie_joueur, int ligne, int nb_pièce)
 
 int valider_coup_grundy(t_partie_infos* partie_grundy, int ligne, int nb_pièce) {
 
-	modifier_jeu((partie_grundy->jetons_actuel, ligne, nb_pièce));  // Retire le nombre de jetons à la ligne
+	  // Retire le nombre de jetons à la ligne
 }
 
 int updater_jeu_joueur(t_partie_infos* partie_joueur) {
