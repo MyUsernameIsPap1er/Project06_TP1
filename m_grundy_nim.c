@@ -63,10 +63,10 @@ int declencher_coup_grundy(const t_partieID) {
 	}
 
 	//2
-	int tableau_nim_binaire[8] = { 0 }; // Tableau contenant un bit (0 ou 1) qui représente la parité des colonnes respectives de matice_grundy
-	int numero_nim = 0; // Nombre résultants de l
-	int structure_status; //Status de la structure (pair = 0, impaire 1)
-	int nb_jetons_soustraire = 0;
+	int tableau_nim_binaire[8] = { 0 }; // Tableau contenant un bit (0 ou 1) qui représente la parité des colonnes respectives de matice_grundy (opération XOR dans chaque colonne)
+	int numero_nim = 0; // Nombre résultant de la conversion binaire-décimale du nombre binaire contenu dans tableau_nim_binaire
+	int structure_status; // Status de la structure (pair = 0, impaire = 1)
+	int nb_jetons_soustraire = 0; // Nombre de jetons à retirer par le coup de grundy
 
 	for (size_t j = 0; j < NB_REP_BINAIRE; j++) // Loop de colonne en colonne
 	{
@@ -85,18 +85,19 @@ int declencher_coup_grundy(const t_partieID) {
 			numero_nim += (int)(pow(2, j));
 		}
 	}
-	if (numero_nim > 0)
+	if (numero_nim > 0) // Si numero_nim est plus grand que 0, nous somme dans une structure impaire donc structure_status = 1
+		                // Sinon la variable structure_status reste 0 et signifie que la structure est pair
 	{
 		structure_status = 1;
 	}
 	
-	if (structure_status == 1)
+	if (structure_status == 0) // Si la structure est pair, déterminer un nombre random de jetons à enlever dans une ligne random du jeu. S'assure aussi que le nombre de jetons est valide
 	{
-		nb_jetons_soustraire = (int)mt_randf(4, 25); //si résultat de l'addition est pair->structure pair enlever un nombre paire de jetons dans une ligne pour garder la structure pair
+		nb_jetons_soustraire = mt_randi(partie_grundy.jetons_actuel[mt_randi(NB_LIGNES_NIM + 1) - 1]);
 	}
-	else
+	else // Si structure_status n'est pas 0, elle est impaire, et donc le nombre de jetons à enlever est le numéro de nim
 	{
-		nb_jetons_soustraire = numero_nim;    //si resultat de l'addition est impair enlever un nombre x de jetons pour remettre la structure pair
+		nb_jetons_soustraire = numero_nim;    
 	}
 
 
