@@ -93,7 +93,7 @@ int init_partie_grundy(const t_partie_infos* partie);
 
 	sinon l'algorithme de grundy est déclenché
 */
-int declencher_coup_grundy(const t_partieID);
+int declencher_coup_grundy(const t_partieID* sonID, int* ligne, int* nb_jetons);
 
 /*==========================================================*/
 /*

@@ -32,7 +32,38 @@ int init_nouvelle_partie(void) {
 
 int jouer_la_partie(void) {
 	
+	init_nouvelle_partie();
+	init_partie_joueur(partie);
+	init_partie_grundy(partie);
+
+	tour_de = HUMAIN;
+
+	int ligne;
+	int nb_jetons;
+
+	while (partie_en_cours)
+	{
+
+		if (tour_de == HUMAIN)
+		{
+			updater_jeu_joueur(partie_joueur);
+
+			declencher_coup_joueur(partie_joueur.id_partie, &ligne, &nb_jetons);
+		}
+
+		if (tour_de == GRUNDY)
+		{
+
+			updater_jeu_grundy(partie_grundy);
+
+			declencher_coup_grundy(partie_grundy.id_partie, &ligne, &nb_jetons);
+
+
+		}
+	}
+
 	
+
 	
 }
 
@@ -60,6 +91,7 @@ void set_nouvelle_partie(t_partie_infos partie) {
 
 	partie.jetons_actuel = { 0 };
 	partie.jetons_actuel = { 0 };
+	partie.id_partie = { 0 };
 }
 
 int tester_partie_conforme(const t_partie_infos* partie) {

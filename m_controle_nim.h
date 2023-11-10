@@ -11,6 +11,8 @@
 
 //=========================================================
 #include "m_types_const_nim.h"
+#include "m_grundy_nim.h"
+#include "m_joueur_nim.h"
 /*==========================================================*/
 /*
     Le module controle contient six variables privées 

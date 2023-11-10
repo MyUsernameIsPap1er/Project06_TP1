@@ -1,5 +1,6 @@
 
 #include "m_grundy_nim.h"
+#include "m_controle_nim.h"
 
 /*==========================================================*//*==========================================================*/
 int get_partie_grundy_en_cours(void) {
@@ -25,7 +26,7 @@ int init_partie_grundy(const t_partie_infos* partie) {
 	return 1;
 }
 /*==========================================================*//*==========================================================*/
-int declencher_coup_grundy(const t_partieID) {
+int declencher_coup_grundy(const t_partieID* sonID, int* ligne, int* nb_jetons) {
 
 	if (partie_grundy_en_cours || strcmp(*sonID, partie_grundy.id_partie)) //Si il y a une partie en cours, retourne 0 ou que le ID ne correspond pas
 	{
@@ -128,9 +129,10 @@ int declencher_coup_grundy(const t_partieID) {
 		}
 	}
 
-	modifier_jeu(partie_grundy.jetons_actuel, ligne_coup, nb_jetons_soustraire); // Retire le nombre de jetons à la ligne déterminée
+	*nb_jetons = nb_jetons_soustraire;
+	*ligne = ligne_coup;
 
-	valider_coup_grundy();
+	//modifier_jeu(partie_grundy.jetons_actuel, ligne_coup, nb_jetons_soustraire); // Retire le nombre de jetons à la ligne déterminée
 }
 	
 	
