@@ -18,22 +18,22 @@ int init_nouvelle_partie(void) {
 		partie_en_cours = 1;
 	}
 	else {
-		return 0;
+		return ERREUR;
 	}
 
 	get_ID_unique(&partie.id_partie);
 
 	init_jeu_alea(partie.jetons_original);
 
-	if (tester_jeu_conforme(partie.jetons_original)
+	if (tester_jeu_conforme(partie.jetons_original))
 	{
-		return 0;
+		return ERREUR;
 	}
 
 	copier_jeu(partie.jetons_original, partie.jetons_actuel);
 
 		return 1;
-
+}
 	
 
 
@@ -48,9 +48,15 @@ int jouer_la_partie(void) {
 
 	while (partie_en_cours)
 	{
+		
 
 		if (tour_de == HUMAIN)
 		{
+			if (tester_fin_jeu(partie.jetons_actuel) == 0)
+			{
+				return GRUNDY;
+			}
+
 			init_partie_joueur(partie);
 
 			declencher_coup_joueur(partie_joueur.id_partie, &ligne, &nb_jetons);
@@ -60,10 +66,17 @@ int jouer_la_partie(void) {
 			updater_jeu_joueur(partie_joueur);
 
 			terminer_partie_joueur(partie_joueur.id_partie);
+
+			tour_de = GRUNDY
 		}
 
 		if (tour_de == GRUNDY)
 		{
+			if (tester_fin_jeu(partie.jetons_actuel) == 0)
+			{
+				return HUMAIN;
+			}
+
 			init_partie_grundy(partie);
 
 			declencher_coup_grundy(partie_grundy.id_partie, &ligne, &nb_jetons);
@@ -73,6 +86,8 @@ int jouer_la_partie(void) {
 			updater_jeu_grundy(partie_grundy);
 
 			terminer_partie_grundy(partie_grundy.id_partie);
+
+			tour_de = HUMAIN
 		}
 	}
 
