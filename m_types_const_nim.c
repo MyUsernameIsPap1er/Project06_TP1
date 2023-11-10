@@ -37,6 +37,8 @@ int tester_jeu_conforme(const t_tablo_jeu jeu) {
 		}
 	}
 	
+	assert(jeu[0] < 0);
+
 	return 1; // retourne 1 si oui
 }
 

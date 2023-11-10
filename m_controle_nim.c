@@ -18,7 +18,7 @@ int init_nouvelle_partie(void) {
 		partie_en_cours = 1;		
 	}
 	else {
-		return 0
+		return 0;
 	}
 
 	get_ID_unique(&partie.id_partie);
@@ -27,12 +27,12 @@ int init_nouvelle_partie(void) {
 	copier_jeu(partie.jetons_original, partie.jetons_actuel);
 
 
-	return 1
+	return 1;
 }
 
 int jouer_la_partie(void) {
-	
 
+	
 }
 
 int valider_coup_joueur(t_partie_infos* partie_joueur, int ligne, int nb_pièce) {
@@ -48,6 +48,7 @@ int valider_coup_grundy(t_partie_infos* partie_grundy, int ligne, int nb_pièce)
 
 int updater_jeu_joueur(t_partie_infos* partie_joueur) {
 
+
 }
 
 int updater_jeu_grundy(t_partie_infos* partie_grundy) {
@@ -56,4 +57,9 @@ int updater_jeu_grundy(t_partie_infos* partie_grundy) {
 
 void set_nouvelle_partie() {
 
+}
+
+int tester_partie_conforme(const t_partie_infos* partie) {
+
+	tester_jeu_conforme(partie);
 }
