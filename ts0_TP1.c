@@ -12,7 +12,7 @@
 #include "mtwister.h"
 #include "m_joueur_nim.h"
 /*==========================================================*/
-
+#define _CRT_SECURE_NO_WARNINGS 
 /*==========================================================================*/
 
 
@@ -31,7 +31,7 @@
 #if 0
 int main(void) {
 
-	t_point2D p0={ 5.1 , -1.2 };
+	t_point2D p0 = { 5.1 , -1.2 };
 
 	t_point2D tabpoints[10];
 
@@ -54,7 +54,7 @@ int main(void) {
 	printf("\n premier ID      %s\n\n", test);
 
 	system("pause");	system("cls");
-		
+
 	get_ID_unique(test);
 	printf("\n second ID      %s\n\n", test);
 
@@ -82,7 +82,7 @@ int main(void) {
 
 	// le pointeur aura l'adresse de p00
 	// dit autrement *pj0 et p00 sont le meme objet
-	pj0 = &p00; 
+	pj0 = &p00;
 
 	printf("\n les tailles	%d , %d  %d \n", sizeof(pj0), sizeof(*pj0), sizeof(*pj0));
 	printf("\n les adresses	%p , %p  \n", pj0, &p00);
@@ -90,7 +90,7 @@ int main(void) {
 
 	// l'acces indirect aux membres de la struct
 	pj0->jetons_original[1] = 6;
-	pj0->jetons_original[0]= p00.jetons_actuel[0];
+	pj0->jetons_original[0] = p00.jetons_actuel[0];
 
 	// affiche l'ID avec un %s
 	printf("\n ID =	%s \n", p00.id_partie);

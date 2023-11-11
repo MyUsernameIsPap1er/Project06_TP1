@@ -25,6 +25,8 @@ int declencher_coup_joueur(const t_partieID* sonID, int* ligne, int* nb_jetons) 
 
 	if (get_partie_joueur_en_cours || strcmp(*sonID, partie_joueur.id_partie)) {
 
+		updater_jeu_joueur(&partie_joueur);
+
 		guidejeu();
 
 		aff_jeu_actuel();
@@ -40,6 +42,7 @@ int declencher_coup_joueur(const t_partieID* sonID, int* ligne, int* nb_jetons) 
 		*nb_jetons = jetons_choisi;
 		*ligne = ligne_choisi;
 
+		valider_coup_joueur(&partie_joueur, &ligne, &nb_jetons);
 
 	}
 
@@ -72,7 +75,7 @@ void aff_jeu_actuel(void) {
 
 	printf("Jetons sur le tableau : ");
 
-	for (int i = 0; i <= NB_LIGNES_NIM; i++) { //affiche horizontalement le tableau de NIM avec les jetons encore dans la partie
+	for (int i = 0; i <= NB_LIGNES_NIM - 1; i++) { //affiche horizontalement le tableau de NIM avec les jetons encore dans la partie
 
 		printf("  %d  ", partie_joueur.jetons_actuel[i]);
 
@@ -81,7 +84,7 @@ void aff_jeu_actuel(void) {
 	printf("\n"); // nouvelle affichage en dessous
 	printf("Jetons absents :       ");
 
-	for (int i = 0; i <= NB_LIGNES_NIM; i++) { //affiche horizontalement les jetons retire dans chaques lignes
+	for (int i = 0; i <= NB_LIGNES_NIM - 1; i++) { //affiche horizontalement les jetons retire dans chaques lignes
 
 		jetons_absent[i] = partie_joueur.jetons_original[i] - partie_joueur.jetons_actuel[i];
 

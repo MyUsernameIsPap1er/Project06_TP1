@@ -29,7 +29,7 @@ void init_jeu_alea(t_tablo_jeu dest) {
 /*==========================================================*/
 int tester_jeu_conforme(const t_tablo_jeu jeu) {
 
-	for (int i = 0; i < NB_LIGNES_NIM; i += 1) {
+	for (int i = 0; i < NB_LIGNES_NIM; ++i) {
 
 		if (jeu[i] < 0 || jeu[i] > NB_JETONS_MAX) { // regarde si chaque valeur vaut plus que 0
 
@@ -120,9 +120,12 @@ void copier_partie(const t_partie_infos* src, t_partie_infos* dest) {
 
 	//Copie des valeurs de src dans dest
 
-	*dest->jetons_actuel = *src->jetons_actuel;
-	*dest->jetons_original = *src->jetons_original;
-	strcpy(dest, src);
+	for (size_t i = 0; i < NB_LIGNES_NIM; ++i)
+	{
+		dest->jetons_actuel[i] = src->jetons_actuel[i];
+		dest->jetons_original[i] = src->jetons_original[i];
+	}
+	strcpy(dest->id_partie, src->id_partie);
 }
 /*==========================================================*/
 /*==========================================================*/

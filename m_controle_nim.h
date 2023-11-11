@@ -39,16 +39,14 @@ static int partie_en_cours = 0;
 static t_partie_infos partie;
 
 // par exemple tour_de alternera dans une véritable partie entre HUMAIN et GRUNDY
-static int tour_de = -1;
-static int nb_coups_adate = -1;
-static int ligne_modif = -1;
-static int nb_jetons_pris = -1;
+static int tour_de = 0;
+static int nb_coups_adate = 0;
+static int ligne_modif = 0;
+static int nb_jetons_pris = 0;
 
 /*==========================================================*/
 /*==========================================================*/
 
-static int ligne;
-static int nb_jetons;
 
 /*==========================================================*/
 /* Les fonctions publiques du module controle
