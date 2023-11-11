@@ -28,15 +28,15 @@ void init_jeu_alea(t_tablo_jeu dest) {
 
 /*==========================================================*/
 int tester_jeu_conforme(const t_tablo_jeu jeu) {
-	
+
 	for (int i = 0; i < NB_LIGNES_NIM; i += 1) {
-		
+
 		if (jeu[i] < 0 || jeu[i] > NB_JETONS_MAX) { // regarde si chaque valeur vaut plus que 0
-			
+
 			return 0; // retourne 0 si non
 		}
 	}
-	
+
 
 	return 1; // retourne 1 si oui
 }
@@ -53,14 +53,14 @@ void copier_jeu(const t_tablo_jeu src, t_tablo_jeu dest) {
 /*==========================================================*/
 int tester_jeux_egaux(const t_tablo_jeu jeu0, const t_tablo_jeu jeu1) {
 
-	for (int i = 0;i < NB_LIGNES_NIM;i += 1) { //Traverse le tableau
-		
+	for (int i = 0; i < NB_LIGNES_NIM; i += 1) { //Traverse le tableau
+
 		if (jeu0[i] != jeu1[i]) { //Regarde si les valeurs entre jeu0 et jeu1 sont les mêmes
-			
+
 			return 0; //Retourne 0 si non
 		}
 	}
-	
+
 	return 1; //Retourne 1 si oui
 }
 
@@ -85,7 +85,7 @@ int tester_ordre_jeux(const t_tablo_jeu original, const t_tablo_jeu actuel) {
 /*==========================================================*/
 int tester_fin_jeu(const t_tablo_jeu jeu) {
 
-	for (size_t i = 0; i < NB_LIGNES_NIM ; i++) //Traverse le tableau
+	for (size_t i = 0; i < NB_LIGNES_NIM; i++) //Traverse le tableau
 	{
 		if (jeu[i] != 0) //Regarde si toutes les valeurs du jeu sont 0 (fin du jeu)
 		{
@@ -108,9 +108,9 @@ int modifier_jeu(t_tablo_jeu jeu, int ligne, int nb_jetons) {
 int parties_egales(const t_partie_infos* partie0, const t_partie_infos* partie1) {
 
 	if (partie0->jetons_actuel == partie1->jetons_actuel &&
-		partie0->jetons_original == partie1->jetons_original && 
+		partie0->jetons_original == partie1->jetons_original &&
 		!(strcmp(partie0->id_partie, partie1->id_partie))) { //S'assure que toute les variables de chaque tableau sont les mêmes.
-		
+
 		return 1; //Retourne 1 si elles le sont
 	}
 	return 0; //Retourne 0 si elles ne le sont pas
@@ -120,7 +120,7 @@ void copier_partie(const t_partie_infos* src, t_partie_infos* dest) {
 
 	//Copie des valeurs de src dans dest
 
-	*dest->jetons_actuel = *src->jetons_actuel; 
+	*dest->jetons_actuel = *src->jetons_actuel;
 	*dest->jetons_original = *src->jetons_original;
 	strcpy(dest, src);
 }
@@ -135,7 +135,7 @@ void copier_partie(const t_partie_infos* src, t_partie_infos* dest) {
 /*
   la fonction emettrice des id de partie vous est offerte
   VOUS NE DEVEZ PAS LA MODIFIER
-  
+
   meme pleine de "magic numbers"
   ce qui est pas beau
   vous ne devez pas la modifier
@@ -144,12 +144,12 @@ void copier_partie(const t_partie_infos* src, t_partie_infos* dest) {
 void get_ID_unique(t_partieID id_partie) {
 	const int source = 981 * 8377;
 	static ordre = 1;
-	char tampon[4* TAILLE_ID] = { 0 };
+	char tampon[4 * TAILLE_ID] = { 0 };
 	int alea;
 
-	alea = source/100 + mt_randi(source);
+	alea = source / 100 + mt_randi(source);
 	sprintf(tampon, "P%d   %d", ordre, alea);
-	tampon[TAILLE_ID-1] = 0;
+	tampon[TAILLE_ID - 1] = 0;
 	strcpy(id_partie, tampon);
 	ordre += 1;
 }

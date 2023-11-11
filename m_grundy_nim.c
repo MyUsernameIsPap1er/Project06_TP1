@@ -19,7 +19,7 @@ int init_partie_grundy(const t_partie_infos* partie) {
 		return 0;
 	}
 
-	copier_partie(partie, partie_grundy); //Sinon copie la partie recue dans partie_grundy
+	copier_partie(partie, &partie_grundy); //Sinon copie la partie recue dans partie_grundy
 
 	partie_grundy_en_cours = 1; //Lance une partie donc partie_grundy_en_cours se met à 1
 
@@ -93,10 +93,10 @@ int declencher_coup_grundy(const t_partieID* sonID, int* ligne, int* nb_jetons) 
 			int jetons_post_soustraction = 0;
 
 			for (size_t j = 0; j < NB_REP_BINAIRE; ++j) // Loop entre les colonnes et calcul le nombre de jetons en binaire (en convertissant au fur et a mesure en decimal) qui devrait être
-														// sur la ligne pour que la structure soit pair. Ce nombre (jetons_post_soustraction) sera soustrais (SI POSSIBLE, sinon on reloop) au
-														// nombre de jetons présent sur la ligne (jeu actuel) ce qui determinera la valeur de nb_jetons_soustraire
+				// sur la ligne pour que la structure soit pair. Ce nombre (jetons_post_soustraction) sera soustrais (SI POSSIBLE, sinon on reloop) au
+				// nombre de jetons présent sur la ligne (jeu actuel) ce qui determinera la valeur de nb_jetons_soustraire
 			{
-				if (matice_grundy[i][j] != tableau_nim_binaire[j])
+				if (noyau_grundy[i][j] != tableau_nim_binaire[j])
 				{
 					jetons_post_soustraction += (int)(pow(2, j)); // conversion en décimal
 				}
@@ -118,10 +118,10 @@ int declencher_coup_grundy(const t_partieID* sonID, int* ligne, int* nb_jetons) 
 
 	//modifier_jeu(partie_grundy.jetons_actuel, ligne_coup, nb_jetons_soustraire); // Retire le nombre de jetons à la ligne déterminée
 }
-	
-	
+
+
 /*==========================================================*//*==========================================================*/
-void terminer_partie_grundy(const t_partieID) {
+void terminer_partie_grundy(const t_partieID* sonID) {
 	if (partie_grundy_en_cours || strcmp(*sonID, partie_grundy.id_partie)) {
 		partie_grundy_en_cours = 0;
 	}

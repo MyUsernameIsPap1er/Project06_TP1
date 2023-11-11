@@ -1,4 +1,4 @@
-3/*==========================================================*/
+/*==========================================================*/
 /*  aut2023 tp1
 	implémentation du module types et constantes du logiciel
 
@@ -32,23 +32,23 @@ int init_nouvelle_partie(void) {
 
 	copier_jeu(partie.jetons_original, partie.jetons_actuel);
 
-		return 1;
+	return 1;
 }
-	
+
 
 
 int jouer_la_partie(void) {
-	
+
 	init_nouvelle_partie();
 
 
 	tour_de = HUMAIN;
 
-	
+
 
 	while (partie_en_cours)
 	{
-		
+
 
 		if (tour_de == HUMAIN)
 		{
@@ -57,17 +57,17 @@ int jouer_la_partie(void) {
 				return GRUNDY;
 			}
 
-			init_partie_joueur(partie);
+			init_partie_joueur(&partie);
 
 			declencher_coup_joueur(partie_joueur.id_partie, &ligne, &nb_jetons);
-			
-			valider_coup_joueur(partie_joueur, &ligne, &nb_jetons);
 
-			updater_jeu_joueur(partie_joueur);
+			valider_coup_joueur(&partie_joueur, &ligne, &nb_jetons);
+
+			updater_jeu_joueur(&partie, &partie_joueur);
 
 			terminer_partie_joueur(partie_joueur.id_partie);
 
-			tour_de = GRUNDY
+			tour_de = GRUNDY;
 		}
 
 		if (tour_de == GRUNDY)
@@ -77,32 +77,32 @@ int jouer_la_partie(void) {
 				return HUMAIN;
 			}
 
-			init_partie_grundy(partie);
+			init_partie_grundy(&partie);
 
 			declencher_coup_grundy(partie_grundy.id_partie, &ligne, &nb_jetons);
 
-			valider_coup_grundy();
+			valider_coup_grundy(&partie_grundy, &ligne, &nb_jetons);
 
-			updater_jeu_grundy(partie_grundy);
+			updater_jeu_grundy(&partie, &partie_grundy);
 
 			terminer_partie_grundy(partie_grundy.id_partie);
 
-			tour_de = HUMAIN
+			tour_de = HUMAIN;
 		}
 	}
 
-	
 
-	
+
+
 }
 
 int valider_coup_joueur(t_partie_infos* partie_joueur, int ligne, int nb_pièce) {
-	
+
 	assert(partie_joueur->jetons_actuel[ligne] > nb_pièce);
 	assert(ligne < NB_LIGNES_NIM);
-	
-	modifier_jeu(partie_joueur.jetons_actuel, ligne, nb_jetons);
-	
+
+	modifier_jeu(partie_joueur->jetons_actuel, ligne, nb_jetons);
+
 }
 
 
@@ -110,29 +110,23 @@ int valider_coup_grundy(t_partie_infos* partie_grundy, int ligne, int nb_pièce)
 	assert(partie_grundy->jetons_actuel[ligne] > nb_pièce);
 	assert(ligne < NB_LIGNES_NIM);
 
-	
-	modifier_jeu(partie_grundy.jetons_actuel, ligne, nb_jetons);	  // Retire le nombre de jetons à la ligne
+
+	modifier_jeu(&partie_grundy->jetons_actuel, ligne, nb_jetons);	  // Retire le nombre de jetons à la ligne
 }
 
-int updater_jeu_joueur(t_partie_infos* partie_joueur) {
+int updater_jeu_joueur(t_partie_infos* partie, t_partie_infos* partie_joueur) {
 
-	partie.id_partie = partie_joueur->id_partie;
-	partie.jetons_actuel= partie_joueur->jetons_actuel;
-	partie.jetons_original= partie_joueur->jetons_original
+	copier_partie(partie_joueur, partie);
 }
 
-int updater_jeu_grundy(t_partie_infos* partie_grundy) {
+int updater_jeu_grundy(t_partie_infos* partie, t_partie_infos* partie_grundy) {
 
-	partie.id_partie = partie_grundy->id_partie;
-	partie.jetons_actuel = partie_grundy->jetons_actuel;
-	partie.jetons_original = partie_grundy->jetons_original;
+	copier_partie(partie_grundy, partie);
 }
 
-void set_nouvelle_partie(t_partie_infos partie) {
+void set_nouvelle_partie(t_partie_infos* partie) {
 
-	partie.jetons_actuel = { 0 };
-	partie.jetons_actuel = { 0 };
-	partie.id_partie = { 0 };
+
 }
 
 int tester_partie_conforme(const t_partie_infos* partie) {

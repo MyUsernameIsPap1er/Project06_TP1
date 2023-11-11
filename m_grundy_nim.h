@@ -17,7 +17,7 @@
 /*
 Ce module est le frère jumeau du module m_joueur_nim
 
-la  seule différence notable sera que lors du déclenchement du coup 
+la  seule différence notable sera que lors du déclenchement du coup
 de grundy,  le choix de la ligne et du nombre de jetons sur cette ligne
 sera obtenue par algorithmie, celle du noyau de P.M. Grundy (1917-1959)
 et non par interface écran/clavier
@@ -39,17 +39,17 @@ c'est alors que la variable partie_grundy_en_cours passe à vrai
 lorsque la fonction declencher_coup_grundy est appellée dans la fonction jouer_la_partie
 du module de controle vous devrez
 
-A - ) déclencher la fonction updater_jeu_grundy du module de controle puisque 
-	  à part au premier coup de la partie, un coup de l'autre joueur dont vous ignorez 
+A - ) déclencher la fonction updater_jeu_grundy du module de controle puisque
+	  à part au premier coup de la partie, un coup de l'autre joueur dont vous ignorez
 	  tout a sans doute eu lieu, le module de controle updatera votre partie_grundy
 
 B - ) plusieurs fonctions privées  dédiées au traitement de la matrice de grundy
 		pour déterminer la ligne et le nombre de jetons	à  enlever sur cette ligne
 		pour jeter le prochain joueur dans le noyau de Grundy (dit état pair)
-		si cette action est impossible (ce qui peut arriver), grundy joue aléatoirement 
+		si cette action est impossible (ce qui peut arriver), grundy joue aléatoirement
 
-C - ) une fois la ligne et nombre de jetons obtenus de l'algorithme du point B 
-      déclencher la fonction valider_coup_grundy  du module de controle 
+C - ) une fois la ligne et nombre de jetons obtenus de l'algorithme du point B
+	  déclencher la fonction valider_coup_grundy  du module de controle
 	  qui valide le coup et modifie la partie_grundy
 
 * /
@@ -103,7 +103,7 @@ int declencher_coup_grundy(const t_partieID* sonID, int* ligne, int* nb_jetons);
    ne pas réaliser cet ordre du module de controle amenera ce module de controle
    à lever une exception et à potentiellement arrêter le programme
 */
-void terminer_partie_grundy(const t_partieID);
+void terminer_partie_grundy(const t_partieID* sonID);
 
 /*==========================================================*/
 #endif	
