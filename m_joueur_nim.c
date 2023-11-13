@@ -19,34 +19,64 @@ int init_partie_joueur(const t_partie_infos* partie) { //recoie info de la parti
 	return 1; // success de init retourne 1///
 }
 
-int declencher_coup_joueur(const t_partieID* sonID, int* ligne, int* nb_jetons) {
+int declencher_coup_joueur(const t_partieID* sonID, int* ligne, int* nb_jetons, int* coup) {
 
 
 
-	if (get_partie_joueur_en_cours || strcmp(*sonID, partie_joueur.id_partie)) {
+	if (!(get_partie_joueur_en_cours || strcmp(*sonID, partie_joueur.id_partie))) {
 
-		updater_jeu_joueur(&partie_joueur);
+		return 0;
 
-		guidejeu();
+	}	
 
-		aff_jeu_actuel();
+	updater_jeu_joueur(&partie_joueur); // Prend la partie principale et la met dans la partie joueur
 
-		int ligne_choisi;
+	guidejeu();
 
-		ligne_jeu(&ligne_choisi);
+	printf("\n\nTour %d\n\n", *coup + 1); // Affiche le tour actuel
 
-		int jetons_choisi;
+	//================================================//
+	// Beaucoup de blabla, juste pour le UI, j'aime les UIs, mmmmmh!
+	// C'est un délice pour les yeux
 
-		jetons_jeu(&jetons_choisi, ligne_choisi);
-
-		*nb_jetons = jetons_choisi;
-		*ligne = ligne_choisi;
-
-		valider_coup_joueur(&partie_joueur, &ligne, &nb_jetons);
-
+	if (*coup != 0)
+	{
+		printf("\033[7;35m");
+		printf("\n\nGrundy");
+		printf("\033[0m");
+		printf(" à jouer sur la ");
+		printf("\033[1;32m");
+		printf("ligne ");
+		printf("\033[0m");
+		printf("\033[5;32m");
+		printf("%d ", *ligne + 1);
+		printf("\033[0m");
+		printf("et à pris ");
+		printf("\033[5;32m");
+		printf("%d", *nb_jetons);
+		printf("\033[0m");
+		printf("\033[1;32m");
+		printf(" jetons \n\n");
+		printf("\033[0m");
 	}
+	
 
-	return 0;
+	//================================================//
+
+	aff_jeu_actuel(); // Assure l'affichage in l'interface pour le joueur
+
+	int ligne_choisi;
+
+	ligne_jeu(&ligne_choisi); // Assure le choix de ligne
+	
+	int jetons_choisi;
+	 
+	jetons_jeu(&jetons_choisi, ligne_choisi); // Assure le choix de jetons
+
+	*nb_jetons = jetons_choisi;
+	*ligne = ligne_choisi;
+
+	valider_coup_joueur(&partie_joueur, ligne_choisi, jetons_choisi); // Effectue le coup pour le joueur
 }
 
 void terminer_partie_joueur(const t_partieID* sonID) {
@@ -64,41 +94,55 @@ void cls(void) {
 void guidejeu(void) {
 	cls(); //clear lecran
 	printf("\nC'est votre tour!");
-	printf("\n\nChoisi une ligne avec un\des jetons");
+	printf("\n\nChoisi une ligne avec un des jetons");
 	printf("\net prends le nombre de jetons de ton choix...");
-	system("PAUSE");
 }
 
 void aff_jeu_actuel(void) {
 
 	int jetons_absent[NB_LIGNES_NIM] = { 0 };
-
-	printf("Tableau: |");
-	printf("Jetons pris:       ");
+	printf("| Ligne |");
+	printf("| Tableau |");
+	printf("Jetons pris       ");
 
 	for (int i = 0; i <= NB_LIGNES_NIM - 1; i++) { //affiche verticalement le tableau de NIM avec les jetons encore dans la partie
 
 		jetons_absent[i] = partie_joueur.jetons_original[i] - partie_joueur.jetons_actuel[i];
+		int aff_ligne = i + 1;
 
-		if (partie_joueur.jetons_actuel[i] % 10 = 0)
+		if (partie_joueur.jetons_actuel[i] >= 10)
 		{
-			printf("\n%d  |", partie_joueur.jetons_actuel[i]);
+			if (aff_ligne >= 10)
+			{
+				printf("\n|   %d  ||    %d   |",aff_ligne,partie_joueur.jetons_actuel[i]);
+			}
+			else
+			{
+				printf("\n|    %d  ||    %d   |",aff_ligne, partie_joueur.jetons_actuel[i]);
+			}
+			
 		}
 		else
 		{
-			printf("\n%d |", partie_joueur.jetons_actuel[i]);
+			if (aff_ligne >= 10)
+			{
+				printf("\n|   %d  ||     %d   |", aff_ligne, partie_joueur.jetons_actuel[i]);
+			}
+			else
+			{
+				printf("\n|    %d  ||     %d   |",aff_ligne, partie_joueur.jetons_actuel[i]);
+			}
+			
 		}
 
 		printf("  %d  ", jetons_absent[i]);
 
 	}
-
-	system("PAUSE");
 }
 
 void ligne_jeu(int* ligne_choisi) {
 
-	printf("Choisi une ligne : ");
+	printf("\nChoisi une ligne : ");
 	scanf("%d", ligne_choisi);
 	while (*ligne_choisi > NB_LIGNES_NIM || partie_joueur.jetons_actuel[(*ligne_choisi - 1)] == 0 || *ligne_choisi <= 0) { //si la ligne est plus grande que le tableau ou qu'il n'y a plus de jetons dans la ligne choisi ou que le input est 0 
 
@@ -115,11 +159,11 @@ void jetons_jeu(int* jetons_choisi, int ligne_choisi) {
 
 	printf("Choisi le nombre de jetons a retirer : ");
 	scanf("%d", jetons_choisi);
-	while (*jetons_choisi > partie_joueur.jetons_actuel[(ligne_choisi)] || *jetons_choisi <= 0) { //si le nombre est plus grand que le nb disponible de jetons ou 0
+	while (*jetons_choisi > partie_joueur.jetons_actuel[(ligne_choisi - 1)] || *jetons_choisi <= 0) { //si le nombre est plus grand que le nb disponible de jetons ou 0
 
 		printf("\nERREUR : nombre de jetons invalide");
 		printf("\nChoisi un autre nombre : ");
-		scanf(" ", jetons_choisi);
+		scanf("%d", jetons_choisi);
 
 	} // repeter jusqua avoir un nb valide
 

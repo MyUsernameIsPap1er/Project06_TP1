@@ -54,7 +54,7 @@ int declencher_coup_grundy(const t_partieID* sonID, int* ligne, int* nb_jetons) 
 	int tableau_nim_binaire[8] = { 0 }; // Tableau contenant un bit (0 ou 1) qui représente la parité des colonnes respectives de matice_grundy (opération XOR dans chaque colonne)
 	int numero_nim = 0; // Nombre résultant de la conversion binaire-décimale du nombre binaire contenu dans tableau_nim_binaire
 
-	int structure_status; // Status de la structure (pair = 0, impaire = 1)
+	int structure_status = 0; // Status de la structure (pair = 0, impaire = 1)
 	int ligne_coup; // Ligne sur laquelle grundy va jouer
 	int nb_jetons_soustraire; // Nombre de jetons à retirer par le coup de grundy
 
@@ -125,12 +125,10 @@ int declencher_coup_grundy(const t_partieID* sonID, int* ligne, int* nb_jetons) 
 
 
 
-	valider_coup_grundy(&partie_grundy, ligne_coup, nb_jetons_soustraire);
+	valider_coup_grundy(&partie_grundy, ligne_coup, nb_jetons_soustraire); // Retire le nombre de jetons à la ligne déterminée
 
-	*ligne = ligne_coup;
-	*nb_jetons = nb_jetons_soustraire;
 
-	return 1;	//modifier_jeu(partie_grundy.jetons_actuel, ligne_coup, nb_jetons_soustraire); // Retire le nombre de jetons à la ligne déterminée
+	return 1;
 }
 
 
@@ -141,19 +139,3 @@ void terminer_partie_grundy(const t_partieID* sonID) {
 	}
 }
 /*==========================================================*//*==========================================================*/
-	/*Déclancher l'algorithme grundy:
-
-	1- Représenter le nb de pièces sur chacune des lignes du jeu en binaire dans la ligne corresspondantes d'une matrice d'entiers
-	cette matrice est définie avec une ligne de plus que le nb de lignes du jeu
-
-	2- Maintenant dans chq case de la dernière  ligne de la matrice  faites la sommes des valeurs qui viennent au-dessus d'elle dans sa colonne
-
-	3- Si tts les val sur la dernière ligne de la matrice sont paires, in sera dans une structure paire sinon ce sera une structure impaire
-
-	4-Structure paire et d'un coup valide-> joueur amène jeu vers structure impaire
-
-	5-Structure impaire-> joueur a tjrs l'opportunité de ramener le jeu en structure pair d'un coup valide
-
-	6- Zéro = structure paire (si adversaire est continuellement en structure paire il ne peut pas gagner)
-
-	*/

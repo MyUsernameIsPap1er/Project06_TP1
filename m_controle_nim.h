@@ -124,7 +124,7 @@ int updater_jeu_grundy(t_partie_infos* partie_grundy);
    elles devront être données static
 */
 
-void set_nouvelle_partie(t_partie_infos partie);
+void set_nouvelle_partie(void);
 /*==========================================================*/
 
 /*
