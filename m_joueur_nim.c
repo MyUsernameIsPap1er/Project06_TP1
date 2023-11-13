@@ -73,14 +73,22 @@ void aff_jeu_actuel(void) {
 
 	int jetons_absent[NB_LIGNES_NIM] = { 0 };
 
-	printf("Jetons sur le tableau : ");
-	printf("Jetons absents :       ");
+	printf("Tableau: |");
+	printf("Jetons pris:       ");
 
 	for (int i = 0; i <= NB_LIGNES_NIM - 1; i++) { //affiche verticalement le tableau de NIM avec les jetons encore dans la partie
 
 		jetons_absent[i] = partie_joueur.jetons_original[i] - partie_joueur.jetons_actuel[i];
 
-		printf("\n%d", partie_joueur.jetons_actuel[i]);
+		if (partie_joueur.jetons_actuel[i] % 10 = 0)
+		{
+			printf("\n%d  |", partie_joueur.jetons_actuel[i]);
+		}
+		else
+		{
+			printf("\n%d |", partie_joueur.jetons_actuel[i]);
+		}
+
 		printf("  %d  ", jetons_absent[i]);
 
 	}
