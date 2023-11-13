@@ -57,6 +57,7 @@ int jouer_la_partie(void) {
 		{
 			if (tester_fin_jeu(partie.jetons_actuel))
 			{
+				partie_en_cours = 0;
 				return GRUNDY;
 			}
 
@@ -75,6 +76,7 @@ int jouer_la_partie(void) {
 		{
 			if (tester_fin_jeu(partie.jetons_actuel))
 			{
+				partie_en_cours = 0;
 				return HUMAIN;
 			}
 
@@ -121,7 +123,7 @@ int updater_jeu_joueur(t_partie_infos* partie_joueur) {
 
 int updater_jeu_grundy(t_partie_infos* partie_grundy) {
 
-	copier_partie(partie_grundy, &partie);
+	copier_partie(&partie, partie_grundy);
 }
 
 void set_nouvelle_partie(t_partie_infos* partie) {
