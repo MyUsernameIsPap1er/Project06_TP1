@@ -118,7 +118,7 @@ int valider_coup_grundy(t_partie_infos* partie_grundy, int ligne, int nb_jetons)
 
 int updater_jeu_joueur(t_partie_infos* partie_joueur) {
 
-	copier_partie(partie_joueur, &partie);
+	copier_partie(&partie, partie_joueur);
 }
 
 int updater_jeu_grundy(t_partie_infos* partie_grundy) {
