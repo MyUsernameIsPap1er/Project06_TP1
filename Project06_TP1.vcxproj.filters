@@ -24,6 +24,15 @@
     <ClCompile Include="ts0_TP1.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="m_controle_nim.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="m_grundy_nim.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="m_joueur_nim.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="m_controle_nim.h">
