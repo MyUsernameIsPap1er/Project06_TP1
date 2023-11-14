@@ -41,7 +41,7 @@ int declencher_coup_joueur(const t_partieID* sonID, int* ligne, int* nb_jetons, 
 
 	if (*coup != 0)
 	{
-		printf("\033[7;35m");
+		printf("\033[1;35m");
 		printf("\n\nGrundy");
 		printf("\033[0m");
 		printf(" à jouer sur la ");
@@ -92,7 +92,7 @@ void cls(void) {
 }
 
 void guidejeu(void) {
-	cls(); //clear lecran
+	cls(); //clear l'écran
 	printf("\nC'est votre tour!");
 	printf("\n\nChoisi une ligne avec un des jetons");
 	printf("\net prends le nombre de jetons de ton choix...");
@@ -101,9 +101,11 @@ void guidejeu(void) {
 void aff_jeu_actuel(void) {
 
 	int jetons_absent[NB_LIGNES_NIM] = { 0 };
-	printf("| Ligne |");
-	printf("| Tableau |");
-	printf("Jetons pris       ");
+	printf("|\033[7;37m LIGNE \033[0m|"); //Plus de beauté, toujours plus de beauté
+	
+	printf("|\033[7;33m   JEU   \033[0m|");
+
+	printf("\033[7;36m  JETONS PRIS  \033[0m");
 
 	for (int i = 0; i <= NB_LIGNES_NIM - 1; i++) { //affiche verticalement le tableau de NIM avec les jetons encore dans la partie
 
@@ -135,7 +137,7 @@ void aff_jeu_actuel(void) {
 			
 		}
 
-		printf("  %d  ", jetons_absent[i]);
+		printf("       %d  ", jetons_absent[i]);
 
 	}
 }
