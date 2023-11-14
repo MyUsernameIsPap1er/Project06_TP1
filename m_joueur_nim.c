@@ -105,20 +105,22 @@ void guidejeu(void) {
 void aff_jeu_actuel(void) {
 
 	int jetons_absent[NB_LIGNES_NIM] = { 0 };
-	printf("|\033[7;37m LIGNE \033[0m|"); //Plus de beauté, toujours plus de beauté
+	printf("|\033[7;40m LIGNE \033[0m|"); //Plus de beauté, toujours plus de beauté
 	
 	printf("|\033[7;33m   JEU   \033[0m|");
 
-	printf("\033[7;36m  JETONS PRIS  \033[0m");
+	printf("|\033[7;36m  JETONS PRIS  \033[0m|");
+
+	printf("|\033[1;90m JEU ORIGINAL \033[0m|");
 
 	for (int i = 0; i <= NB_LIGNES_NIM - 1; i++) { //affiche verticalement le tableau de NIM avec les jetons encore dans la partie
 
 		jetons_absent[i] = partie_joueur.jetons_original[i] - partie_joueur.jetons_actuel[i];
 		int aff_ligne = i + 1;
 
-		if (partie_joueur.jetons_actuel[i] >= 10)
+		if (partie_joueur.jetons_actuel[i] >= 10) // Pour retirer un espace si on a un digit a la deuxieme position
 		{
-			if (aff_ligne >= 10)
+			if (aff_ligne >= 10) // Pour retirer un espace si on a un digit a la deuxieme position
 			{
 				printf("\n|   %d  ||    %d   |",aff_ligne,partie_joueur.jetons_actuel[i]);
 			}
@@ -130,7 +132,7 @@ void aff_jeu_actuel(void) {
 		}
 		else
 		{
-			if (aff_ligne >= 10)
+			if (aff_ligne >= 10) // Pour retirer un espace si on a un digit a la deuxieme position
 			{
 				printf("\n|   %d  ||     %d   |", aff_ligne, partie_joueur.jetons_actuel[i]);
 			}
@@ -141,14 +143,31 @@ void aff_jeu_actuel(void) {
 			
 		}
 
-		printf("       %d  ", jetons_absent[i]);
+		if (jetons_absent[i] >= 10) // Pour retirer un espace si on a un digit a la deuxieme position
+		{			
+			printf("|      %d       |", jetons_absent[i]);
+		}
+		else
+		{
+			printf("|       %d       |", jetons_absent[i]);
+		}
+		
+		if (partie_joueur.jetons_original[i] >= 10) // Pour retirer un espace si on a un digit a la deuxieme position 
+		{
+			printf("|      \033[1;90m%d\033[0m      |", partie_joueur.jetons_original[i]);
+		}
+		else
+		{
+			printf("|       \033[1;90m%d\033[0m      |", partie_joueur.jetons_original[i]);
+		}
+		
 
 	}
 }
 
 void ligne_jeu(int* ligne_choisi) {
 
-	printf("\nChoisi une ligne : ");
+	printf("\n\nChoisi une ligne : ");
 	scanf("%d", ligne_choisi);
 	while (*ligne_choisi > NB_LIGNES_NIM || partie_joueur.jetons_actuel[(*ligne_choisi - 1)] == 0 || *ligne_choisi <= 0) { //si la ligne est plus grande que le tableau ou qu'il n'y a plus de jetons dans la ligne choisi ou que le input est 0 
 

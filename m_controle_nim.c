@@ -18,24 +18,24 @@
 
 int init_nouvelle_partie(void) {
 
-	if (partie_en_cours == 0) { 
+	if (partie_en_cours == 0) { // Si la partie n'est pas initialisé
 
-		partie_en_cours = 1;
+		partie_en_cours = 1; // Mettre à 1
 	}
 	else {
-		return ERREUR;
+		return ERREUR; // Sinon retourner 0
 	}
 
-	get_ID_unique(&partie.id_partie);
+	get_ID_unique(&partie.id_partie); // Donne l'ID à la partie
 
-	init_jeu_alea(partie.jetons_original);
+	init_jeu_alea(partie.jetons_original); //Initialise le tableau de jetons
 
-	if (!(tester_jeu_conforme(partie.jetons_original)))
+	if (!(tester_jeu_conforme(partie.jetons_original))) // Assure que le tableau est conforme
 	{
-		return ERREUR;
+		return ERREUR; // Sinon retourne 0
 	}
 
-	copier_jeu(partie.jetons_original, partie.jetons_actuel);
+	copier_jeu(partie.jetons_original, partie.jetons_actuel); // Copie du jeu_original dans jeu_actuel pour permettre les modifications
 
 	return 1;
 }
@@ -55,7 +55,7 @@ int jouer_la_partie(void) {
 		tour_de = HUMAIN;
 	}
 
-	while (partie_en_cours)
+	while (partie_en_cours) // Assure la continuation tant que la partie n'est pas fini
 	{
 
 		if (tour_de == HUMAIN)
@@ -140,12 +140,12 @@ int valider_coup_grundy(t_partie_infos* partie_grundy, int ligne, int nb_jetons)
 
 int updater_jeu_joueur(t_partie_infos* partie_joueur) {
 
-	copier_partie(partie_joueur, &partie);
+	copier_partie(partie_joueur, &partie); // Copie la partie joueur dans la partie principale
 }
 
 int updater_jeu_grundy(t_partie_infos* partie_grundy) {
 
-	copier_partie(partie_grundy, &partie);
+	copier_partie(partie_grundy, &partie); // Copie la partie grundy dans la partie principale
 }
 
 void set_nouvelle_partie(void) {

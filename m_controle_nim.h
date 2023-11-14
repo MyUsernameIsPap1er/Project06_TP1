@@ -123,15 +123,18 @@ int updater_jeu_grundy(t_partie_infos* partie_grundy);
 
    elles devront être données static
 */
-
+/*
+	Assure la fonctionnalité du  relancement d'une partie
+*/
 void set_nouvelle_partie(void);
 /*==========================================================*/
 
 /*
+*	Test si la partie est conforme
 */
 int tester_partie_conforme(const t_partie_infos* partie);
 
-void test_asserts(void);
+void test_assert_ctrl(void);
 /*==========================================================*/
 #endif	
 /*==========================================================*/

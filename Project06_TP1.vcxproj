@@ -127,12 +127,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="LAUNCHER.c" />
     <ClCompile Include="mtwister.c" />
     <ClCompile Include="m_controle_nim.c" />
     <ClCompile Include="m_grundy_nim.c" />
     <ClCompile Include="m_joueur_nim.c" />
     <ClCompile Include="m_types_const_nim.c" />
-    <ClCompile Include="ts0_TP1.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="mtwister.h" />

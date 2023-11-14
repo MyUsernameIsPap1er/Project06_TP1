@@ -21,9 +21,6 @@
     <ClCompile Include="mtwister.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ts0_TP1.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="m_controle_nim.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -31,6 +28,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="m_joueur_nim.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LAUNCHER.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
