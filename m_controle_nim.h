@@ -131,7 +131,7 @@ void set_nouvelle_partie(void);
 */
 int tester_partie_conforme(const t_partie_infos* partie);
 
-
+void test_asserts(void);
 /*==========================================================*/
 #endif	
 /*==========================================================*/

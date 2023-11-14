@@ -33,7 +33,7 @@ int declencher_coup_grundy(const t_partieID* sonID, int* ligne, int* nb_jetons) 
 		return 0;
 	}
 
-	updater_jeu_grundy(&partie_grundy);
+	
 
 	//1
 	for (size_t i = 0; i < NB_LIGNES_NIM; ++i) // Loop à travers les lignes de l'array de jetons
@@ -127,6 +127,7 @@ int declencher_coup_grundy(const t_partieID* sonID, int* ligne, int* nb_jetons) 
 
 	valider_coup_grundy(&partie_grundy, ligne_coup, nb_jetons_soustraire); // Retire le nombre de jetons à la ligne déterminée
 
+	updater_jeu_grundy(&partie_grundy);
 
 	return 1;
 }

@@ -12,6 +12,8 @@
 #include "m_grundy_nim.h"
 #include "m_joueur_nim.h"
 
+
+
 /*==========================================================*/
 
 int init_nouvelle_partie(void) {
@@ -61,22 +63,22 @@ int jouer_la_partie(void) {
 			if (tester_fin_jeu(partie.jetons_actuel)) //Test la fin du jeu à chaque tour
 			{
 				partie_en_cours = 0;
-				printf("Vous avez perdu!\n\n");
+				printf("\033[7;31m\n\nVous avez perdu!\n\n\033[0m");
 				system("PAUSE");
 				break;
 			}
 
 			//=============================================================================================//
-			//Fonctions qui assure le coup du joueur
+			//  Fonctions qui assure le coup du joueur
 			//=============================================================================================//
 
-			init_partie_joueur(&partie);
+			init_partie_joueur(&partie); // Initialise la partie du joueur, copie les infos de la partie dans partie_joueur
 
-			declencher_coup_joueur(partie_joueur.id_partie, &ligne_modif, &nb_jetons_pris, &nb_coups_adate);
+			declencher_coup_joueur(partie_joueur.id_partie, &ligne_modif, &nb_jetons_pris, &nb_coups_adate); // Permet au joueur d'effectuer son coup (Interface, validation et update de la partie)
 
-			terminer_partie_joueur(partie_joueur.id_partie);
+			terminer_partie_joueur(partie_joueur.id_partie); // Termine le coup du joueur
 
-			++nb_coups_adate; // Incrémente les tours
+			++nb_coups_adate; // Compte le tour
 
 			tour_de = GRUNDY; // Change le tour
 		}
@@ -92,16 +94,18 @@ int jouer_la_partie(void) {
 			}
 
 			//=============================================================================================//
-			//Fonctions qui assure le coup de grundy
+			//  Fonctions qui assure le coup de grundy
 			//=============================================================================================//
 
-			init_partie_grundy(&partie); 
+			init_partie_grundy(&partie); // Initialise la partie de grundi, copie les infos de la partie dans partie_grundy
 
-			declencher_coup_grundy(&partie, partie_grundy.id_partie, &ligne_modif, &nb_jetons_pris);
+			declencher_coup_grundy(&partie, partie_grundy.id_partie, &ligne_modif, &nb_jetons_pris); // Effectue le coup (valide et update la partie)
 
-			terminer_partie_grundy(partie_grundy.id_partie);
+			tester_partie_conforme(&partie); // Tester si la partie est conforme
 
-			++nb_coups_adate; // Incrémente les tours
+			terminer_partie_grundy(partie_grundy.id_partie); // Termine le coup de grundy
+
+			++nb_coups_adate; // Compte le tour
 
 			tour_de = HUMAIN; // Change le tour
 		}
@@ -114,9 +118,7 @@ int jouer_la_partie(void) {
 
 int valider_coup_joueur(t_partie_infos* partie_joueur, int ligne, int nb_jetons) {
 
-	//assert(partie_joueur->jetons_actuel[ligne] < nb_jetons);
-	//assert(ligne > NB_LIGNES_NIM);
-	//assert(ligne <= 0);
+	
 
 	ligne -= 1; // Pour shifter de 0 à 1 pour la selection dans la matrice
 
@@ -127,10 +129,9 @@ int valider_coup_joueur(t_partie_infos* partie_joueur, int ligne, int nb_jetons)
 
 int valider_coup_grundy(t_partie_infos* partie_grundy, int ligne, int nb_jetons) {
 
-	//assert(partie_grundy->jetons_actuel[ligne] > nb_jeton);
-	//assert(ligne < NB_LIGNES_NIM);	
+
 	modifier_jeu(partie_grundy->jetons_actuel, ligne, nb_jetons);	  // Retire le nombre de jetons à la ligne
-	copier_partie(partie_grundy, &partie);
+	
 
 	ligne_modif = ligne;
 	nb_jetons_pris = nb_jetons;
@@ -139,38 +140,34 @@ int valider_coup_grundy(t_partie_infos* partie_grundy, int ligne, int nb_jetons)
 
 int updater_jeu_joueur(t_partie_infos* partie_joueur) {
 
-	copier_partie(&partie, partie_joueur);
+	copier_partie(partie_joueur, &partie);
 }
 
 int updater_jeu_grundy(t_partie_infos* partie_grundy) {
 
-	copier_partie(&partie, partie_grundy);
+	copier_partie(partie_grundy, &partie);
 }
 
 void set_nouvelle_partie(void) {
 
 	cls();
 
-	char non[] = "non";
-	char Non[] = "Non";
-	char oui[] = "oui";
-	char Oui[] = "Oui";
-	char reponse[3];
+	int reponse;
 	int demande = 1;
 	while (demande)
 	{
 
-		printf("\n\n\n Voulez rejouer une nouvelle partie? (Oui/Non) : ");
-		scanf("%s", &reponse);
+		printf("\n\n\n Voulez rejouer une nouvelle partie? \n1 pour Oui\n2 pour Non ");
+		scanf("%d", &reponse);
 
-		if (strcmp(oui, reponse) == 0 || strcmp(Oui, reponse) == 0) // Si oui est saisie, création d'une nouvelle partie
+		if (reponse == 1) // Si oui est saisie, création d'une nouvelle partie
 		{
 			jouer_la_partie();
 		}
-		if (strcmp(non, reponse) == 0 || strcmp(Non, reponse) == 0)
+		if (reponse == 2)
 		{
 			demande = 0;
-			break;
+			printf("Fermeture du programme...");
 		}
 		else
 		{
@@ -184,4 +181,11 @@ void set_nouvelle_partie(void) {
 int tester_partie_conforme(const t_partie_infos* partie) {
 
 	tester_jeu_conforme(partie);
+
+}
+// Des petits asserts au besoin :)
+void test_assert_ctrl(void){
+assert(0 >= ligne_modif <= NB_LIGNES_NIM);
+assert(NB_JETONS_MIN >= nb_jetons_pris <= NB_JETONS_MAX);
+assert(ligne_jeu >= 0);
 }

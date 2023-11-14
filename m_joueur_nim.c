@@ -29,7 +29,7 @@ int declencher_coup_joueur(const t_partieID* sonID, int* ligne, int* nb_jetons, 
 
 	}	
 
-	updater_jeu_joueur(&partie_joueur); // Prend la partie principale et la met dans la partie joueur
+	 // Prend la partie principale et la met dans la partie joueur
 
 	guidejeu();
 
@@ -77,6 +77,10 @@ int declencher_coup_joueur(const t_partieID* sonID, int* ligne, int* nb_jetons, 
 	*ligne = ligne_choisi;
 
 	valider_coup_joueur(&partie_joueur, ligne_choisi, jetons_choisi); // Effectue le coup pour le joueur
+
+	updater_jeu_joueur(&partie_joueur); // Update la partie avec les infos de la partie_joueur une fois le coup joué
+
+	return 1;
 }
 
 void terminer_partie_joueur(const t_partieID* sonID) {
@@ -170,3 +174,5 @@ void jetons_jeu(int* jetons_choisi, int ligne_choisi) {
 	} // repeter jusqua avoir un nb valide
 
 }
+
+
